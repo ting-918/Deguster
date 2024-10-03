@@ -6,8 +6,8 @@
 # Website Layout Design
 **1. Top Navigation Bar Design** <br>
 &emsp;The top navigation bar is encapsulated in a CSS custom class menu_bar, with a total width of 100vw and height <br>
-&emsp;of 10vh. Namely, it will always occupy 100% of the screen's visible width and 10% of its height, being responsive to <br> 
-&emsp;window size. <br>
+&emsp;of 10vh. Namely, it will always occupy 100% of the screen's visible width and 10% of its height, being responsive <br> 
+&emsp;to window size. <br>
 &emsp;This component includes:<br>
 &emsp;&emsp; • An unordered list (\<ul\>) with several embedded anchor links (\<a\>), which facilitate navigation between <br>
 &emsp;&emsp;&emsp; different modules of the website.<br>
@@ -27,6 +27,7 @@
 &emsp;&emsp;&emsp;to create a smooth transition. <br>
 
 **4. Right-side Progress Bar Design** <br>
-&emsp;When the main content area exceeds the visible browser height, a progress bar appears on the right side, <br>
-&emsp;implemented using CSS Animation and JavaScript. <br>
-&emsp;The progress bar's animation is controlled by the scroll position of the page, updating in real-time. <br>
+&emsp;When the main content exceeds the browser height, a progress bar appears on the right side, animating in real-time with scroll. <br>
+&emsp;This conpenent is implemented using CSS Animation and JavaScript, as follows: <br>
+&emsp;&emsp; • **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the animation to progress based on the scroll bar's position. <br>
+&emsp;&emsp; • **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading progress percentage in real time as the user scrolls. <br>
