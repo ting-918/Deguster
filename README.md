@@ -40,18 +40,18 @@ When users hover over a specific continent, the icon of classic desserts in this
 <div align="center"><img src="assets(md)/hover%20over%20desserts%20map.png" width="50%"></div><br>
 
 **3. Browsing and Favorites List** <br>
-After selecting a dessert from the map or side menu, users are taken to a list-style page showcasing each dessert with its title, introduction, favorite button (star icon), and post button (red landmark icon). <br><br>
+After selecting a dessert from the map or side menu, users are taken to a list-style page showcasing each dessert with its title, introduction, favorite button (star icon), and post button (red landmark icon). 
 - Functionality of the Favorite Button <br>
-&emsp;The button allows toggling between two states—not favorited and favorited—while performing corresponding<br>
-&emsp;actions (adding/removing the item from the personal favorites library) <br> 
+&ensp;The button allows toggling between two states—not favorited and favorited—while performing corresponding<br>
+&ensp;actions (adding/removing the item from the personal favorites library) <br> 
 - Dynamic Effect of the Favorite Button <br>
-&emsp;When the mouse hovers over the star icon, it exhibits a side-to-side shaking effect, which is implemented <br>
-&emsp;using CSS Animation and @keyframes.<br>
+&ensp;When the mouse hovers over the star icon, it exhibits a side-to-side shaking effect, which is implemented <br>
+&ensp;using CSS Animation and @keyframes.<br>
 <div align="center"><img src="assets(md)/List.png" width="50%"></div><br>
 
 **4. Post Creation** <br>
 Users can create posts related to specific desserts by clicking on the post button in the list. The popup window allows users to edit the post content, select tags, and upload images, providing a user-friendly interface for content creation. <br>
-To implement **Image Upload and Preview**, we designed a component that includes the following two parts:<br>
+To implement **Image Upload and Preview**, we designed a component that includes the following two parts:
 - Image Upload Control (.upload) <br>
 &emsp;(1) <input type="file"> for selecting and uploading local image files. <br>
 &emsp;(2) <label> used to display status text, showing the current state of the uploaded image. <br>
