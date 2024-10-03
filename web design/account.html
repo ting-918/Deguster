@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8"> 
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>  
+    </head>
+    <style>
+
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        div {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        #main {
+            overflow: auto;
+            scroll-timeline-name: scroll-time;
+            scroll-timeline-axis: vertical;
+        }
+        /*物件*/
+        .item_wrap {
+            width: 72vw;
+            height: 80vh;
+            top: 0%;
+            left: 14vw;
+            position: absolute;
+            background-color: #bccfdf94;
+            border-radius: 1.3em;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*Logo的跳動效果*/
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+        /*彈窗*/
+        .dialog {
+            display: none;
+            bottom: 30vh;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            background: rgba(251, 217, 216, 0.937);
+            background: linear-gradient(135deg, rgba(251, 217, 216, 0.937) 0%, rgba(194, 219, 239, 0.956) 100%);
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*彈窗標題*/
+        .dialog .title {
+            width: 100%;
+            position: absolute;
+            text-align: center; 
+            font-size: 1.5vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #758c9e;
+        }
+        /*彈窗的關閉按鈕*/
+        .close-button {
+            width: 7%;
+            height: 9%;
+            right: 5%;
+            top: 5%;
+            position: absolute; 
+            border: none;
+            border-radius: 50%;
+            background-color: #94badad2;
+            color: white;
+            cursor: pointer;
+        }
+        .close-button:hover {
+            transform: scale(107%);
+        }
+        /*彈窗的 upload file 控件*/
+        .upload {
+            width: 70%;
+            height: 3.8vh;
+            top: 17%;
+            left: 15%;
+            position: absolute;
+            border-radius: 0.5em;
+            background-color: rgba(255, 255, 255, 0.374);
+            transition-duration: 0.5s;
+        }
+        .upload input {
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            position: absolute;
+            opacity:0;    
+        }
+        .upload label {
+            z-index: 1;
+            top: 22%;
+            width: 100%;
+            position: absolute;
+            color: #a7b8c6;
+            text-align: center; 
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            transition-duration: 0.5s;
+        }
+        .img-box {
+            z-index: 1;
+            width: 70%;
+            height: 58%;
+            left: 15%;
+            top: 25.5%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.374);
+        }
+        .img-box #preview {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            position: absolute;
+        }
+        .upload:hover {
+            transform: scale(104%);
+            transition-duration: 0.5s;
+        }
+        .upload:hover label {
+            color: #4b7190bc; 
+            transition-duration: 0.5s;
+        }
+        /*彈窗按鈕*/
+        .release {
+            width: 4.2vw;
+            height: 4.2vh;
+            position: absolute; 
+            border: none;
+            border-radius: 0.5em;
+            color: white;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            transition-duration: 0.5s;
+        }
+        .release:hover {
+            transform: scale(107%);
+            transition-duration: 0.5s;
+            cursor: pointer;
+        }
+        .profile {
+            width: auto;
+            height: auto;
+            max-width: 16%;
+            max-height: 16%;
+            top: 10vh;
+            left: 30vw;
+            opacity: 1;
+            position: absolute;
+            transition-property: opacity;
+            transition-duration: 0.5s;
+        }
+        .profile:hover {
+            cursor: pointer;
+            opacity: 0.7;
+            transition-duration: 0.5s;
+        }
+        #edit {
+            top: 6.8vh;
+            left: 32.7vw;
+            opacity: 0;
+            position: absolute;
+            color: #8398a9;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+        }
+        .profile:hover+#edit {
+            opacity: 1;
+        }
+        .info-title {
+            left: 24vw;
+            position: absolute; 
+            color: #8398a9;
+            font-size: 1.3vw;
+            line-height: 3vh;
+            font-family:'Old Standard TT', serif;
+        }
+        .info {
+            border: none;   /*不要邊框*/
+            outline: none;  /*按下去之後也不要有框線*/
+            left: 30vw;
+            width: 13vw;
+            position: absolute; 
+            padding-left: 1vw;
+            padding-right: 1vw;
+            line-height: 3.5vh;
+            font-size: 1.2vw;
+            color: #8099ad;
+            font-family: 'Old Standard TT', serif;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.572);
+            border-radius: 1.3em;
+        }
+        .info:hover {
+            cursor: pointer;
+        }
+        .logout {
+            top: 62.5vh;
+            left: 32vw;
+            position:absolute;
+            width: 5.5vw;
+            padding: 1.3%;
+            border: none;
+            border-radius: 0.5em;
+            text-align: center;
+            /* 背景渐变色 */
+            background-image: linear-gradient(to right, #67a6d9, #bb74cdbc, #eb74a2a8 ,#67a6d9);
+            /* 背景渐变色大小 */
+            background-size: 600%;
+            animation: colorful 20s infinite;
+        }
+        .logout a {
+            text-decoration: none;
+            font-family:'Old Standard TT', serif;
+            font-size: 1.1vw;
+            color: white;
+        }
+        .logout:hover {
+            animation: none;
+            cursor: pointer;
+        }
+        @keyframes colorful {
+            100% {
+                background-position: -600% 0;
+            }
+        } 
+
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+            <div class="logo" id="logo">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+        </div>
+        <div style="background-color: #f6fcff;" id="main">
+            <div class="item_wrap">
+                <img id="profile" class="profile" src="image/cat.png" onclick="open_diglog()">
+                <p id="edit">Edit</p>
+                <p class="info-title" style="top: 25.5vh;">User ID</p>
+                <input class="info" placeholder="Selena" onfocus="edit_info(this)" onfocusout="show(this)" style="top: 27.2vh;">
+                <p class="info-title" style="top: 33.5vh;">Account</p>
+                <input class="info" placeholder="teehee0918" onfocus="edit_info(this)" onfocusout="show(this)" style="top: 35.2vh;">
+                <p class="info-title" style="top: 41.5vh;">Password</p>
+                <input class="info" type="password" placeholder="********" onfocus="edit_info(this)" onfocusout="show(this)" style="top: 43.2vh;" >
+                <p class="info-title" style="top: 49.5vh;">Region</p>
+                <input class="info" placeholder="Guangzhou" onfocus="edit_info(this)" onfocusout="show(this)" style="top: 51.2vh;">
+                <button class="logout">
+                    <a href="login.html">LogOut</a>
+                </button>
+            </div>
+        </div>
+        <div class="dialog" id="dialog" style="width: 35vw; height: 50vh; right: 32vw;">
+            <button class="close-button" onclick="close_dialog()">X</button>
+            <p class="title" style="top: 3%;">Edit Your Profile</p>
+            <div class="upload">
+                <input id="upload-file" type="file" accept="image/jpeg,image/jpg,image/png" onchange="upload_change()" readonly>
+                <label id="upload-text">Select The File</label>
+            </div>
+            <div class="img-box">
+                <img id="preview">
+            </div> 
+            <button class="release" onclick="change_profile()" style="bottom: 5%; left: 45%; background-color: #94badad2;">Change</button>
+        </div>
+        <div class="dialog" id="check-window" style="width: 25vw; height: 30vh; right: 40vw;">
+            <p class="title" style="top: 5%;">Save Change</p>
+            <p class="title" style="top: 30%; font-size:1.3vw; color:#94a3af">Are you sure to save the change?</p>
+            <button class="release" id="info-change" style="bottom: 22%; left: 30%; background-color: #94badad2">Save</button>
+            <button class="release" id="info-cancel" style="bottom: 22%; left: 55%; background-color: #cb5757d2">Cancel</button>
+        </div>
+        <script>
+            document.querySelectorAll("span").forEach((span, index) => {
+              span.style.setProperty("--delay", `${index * 100}ms`);
+            });
+        </script>
+        <script>
+            /*打開編輯頭像的彈窗*/
+            function open_diglog(){
+                document.getElementById("dialog").style.display = "block";
+            }
+            /*上傳的圖像預覽*/
+            var x = document.getElementById('upload-file')
+            const reader = new FileReader();
+            function upload_change() {
+                if(x.files.length != 0){
+                    var y = document.getElementById('upload-text');
+                    y.innerHTML = x.files[0].name;
+                    y.style.top = 20 +'%';
+                    reader.readAsDataURL(x.files[0]);
+                    Preview()
+                }
+            }   
+            function Preview() {
+                const p = document.getElementById('preview');
+                reader.addEventListener("load", function () {
+                    p.src = reader.result;
+                }, false);
+            }
+            /*修改頭像*/
+            function change_profile() {
+                if(reader.result != null){
+                    document.getElementById('profile').src = reader.result;
+                    close_dialog();
+                    window.alert('Successful!');
+                }
+                else{
+                    window.alert('Upload Fail!');
+                }
+            }
+            /*focus輸入框時*/
+            function edit_info(obj){
+                obj.name = obj.placeholder;
+                obj.placeholder = ""; 
+            }
+            /*打開修改非密碼類型信息的確認彈窗*/
+            function show(obj){
+                var content = obj.value.replace(/\s*/g,"");
+                /*文本不為空且有更動*/
+                if(content != "" && content != obj.name) {
+                    document.getElementById("check-window").style.display = "block";
+                    /*按save按鈕則進行修改*/
+                    document.getElementById("info-change").addEventListener("click", function(){
+                        /*修改密碼類型信息*/
+                        if(obj.type == "password"){
+                            obj.value = "";
+                            obj.placeholder = "********";
+                            window.alert('Successful!');
+                        }
+                        /*修改非密碼類型信息*/
+                        else{
+                            obj.placeholder = content;
+                            obj.value = "";
+                            window.alert('Successful!');
+                        }
+                        close_dialog();
+                    });
+                    /*按cancel按鈕則取消並恢復*/
+                    document.getElementById("info-cancel").addEventListener("click", function(){
+                        /*恢復placeholder*/
+                        if(obj.type == "password")
+                            obj.placeholder = "********";
+                        else
+                            obj.placeholder = obj.name;
+                        obj.name = "";
+                        obj.value = "";
+                        close_dialog();
+                    });
+                }
+                /*恢復placeholder*/
+                else{
+                    obj.placeholder = obj.name;
+                    obj.name = "";
+                    obj.value = "";
+                }
+			}
+            function close_dialog(){
+                document.getElementById("dialog").style.display = "none";
+                document.getElementById("check-window").style.display = "none";
+			}
+        </script>
+        
+    </body>
+</html>

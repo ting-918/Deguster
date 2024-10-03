@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8"> 
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        div {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        #main {
+            overflow: auto;
+            scroll-timeline-name: scroll-time;
+            scroll-timeline-axis: vertical;
+        }
+        /*物件*/
+        .item_wrap {
+            width: 72vw;
+            height: 150vh;
+            top: 0%;
+            left: 14vw;
+            position: absolute;
+            background-color: #bccfdf94;
+            border-radius: 1.3em;
+        }
+        .item {
+            width: 60vw;
+            height: 15vh;
+            left: 6vw;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+            transition-property: transform;
+            transition-duration: 0.5s;
+        }
+        .item:hover {
+            transition-duration: 0.5s;
+            transform: scale(103%);
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*左側彈出的子菜單格式*/
+        li #menu-txt {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            text-align: left;
+            font-weight: normal;
+            line-height: 6vh; 
+            font-size: 1.17vw;
+            border: none;
+            border-radius: 0.5em;
+            color: #819aaf;
+        }
+        li #menu-txt:hover{
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab62;
+            box-shadow: -3px 3px 10px #6a7f90c3;
+            font-weight: bold;
+        }
+        /*Logo的跳動效果*/
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+        /*左側可彈出的菜單*/
+        .pop-menu-field {
+            width: 25vw;
+            height: 90vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .pop-menu {
+            width: 18vw;
+            height: 80vh;
+            left: 3.5vw;
+            top: 0.5vw;
+            position: absolute;
+            background-color: #bccfdfb1;
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*物件小圖標(星形,地標)*/
+        .uncollect-icon {
+            width: auto;
+            height: auto;
+            position: absolute; /* 相對於瀏覽器窗口固定 */
+            opacity: 2;
+        }
+        .collect-icon {
+            width: auto;
+            height: auto;
+            position: absolute; /* 相對於瀏覽器窗口固定 */
+            opacity: 0;
+        }
+        /*星形圖標按鈕的晃動動畫效果*/
+        .collect-icon:hover{
+            cursor: pointer;
+            opacity: 1;
+            animation: shake 1s linear forwards;
+        }
+        @keyframes shake {
+            0% {transform: rotate(0deg);}
+            20% {transform: rotate(-20deg);}
+            40% {transform: rotate(20deg);}
+            60% {transform: rotate(-10deg);}
+            80% {transform: rotate(10deg);}
+            100% {transform: rotate(0deg);}
+        }
+        .share-icon {
+            width: auto;
+            height: auto;
+            position: absolute;
+            opacity: 0.8;
+        }
+        .share-icon:hover {
+            transform: scale(115%);
+            cursor: pointer;
+        }
+        /*滑動進度條的物件(往下掉的愛心)*/
+        .icon {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0.9;
+        }
+        .icon-drop {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            animation-name: Scroll-Animation1;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation1{
+            from {
+                transform: translateY(0) rotate(-20deg) scale(100%);
+            }
+            to {
+                transform: translateY(76vh) rotate(362deg) scale(60%);
+            }
+        }
+        /*閱讀進度百分比*/
+        h3{
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            animation-name: Scroll-Animation2;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation2{
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(76vh);
+            }
+        }
+        /*物件標題*/
+        .item-title {
+            position: absolute; 
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #819aaf;
+        }
+        /*文字簡介段落內容*/
+        section {
+            position: absolute; 
+            width: 85%;
+            font-size: 1.15vw;
+            font-family:'Old Standard TT', serif;
+            color: #6d869a;
+            line-height: 2em;
+        }
+        /*圖片*/
+        .img-box {
+            width: 30%;
+            height: 45.5vh;
+            top: 7.15vh;
+            left:7.5%;
+            position: absolute; 
+            border: none;
+            border-radius: 1.3em;
+        }
+        .img-box img {
+            width:100%; 
+            height: 100%; 
+            object-fit:cover; 
+            position:absolute; 
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #8fa0aea7;
+        }
+        .recipe {
+            width: 47%;
+            height: 32.5vh;
+            top: 19.5vh;
+            left:43.5%;
+            position:absolute; 
+            border: none;
+            border-radius: 1.3em;
+            background-color: rgba(255, 255, 255, 0.307);
+            box-shadow: -5px 5px 12px #8fa0aea7;
+        }
+        .recipe p{
+            position:absolute; 
+            color: #7d8d9b;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            overflow: auto;
+        }
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+            <div class="logo" id="logo" onmouseenter="shift()" onmouseleave="shift_back()">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+        </div>
+        <div class="pop-menu-field" style="background-color: #f6fcff;">
+            <div class="pop-menu" id="pop-menu">
+                <ul style="top: 5%; left:10%; position:absolute;">
+                    <li><a id="menu-txt" href="main.html">Classic Chinese Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic French Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Italian Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Malaysian Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Japanese Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Greek Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Turkish Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="background-color: #f6fcff;" id="main">
+            <h3 id="progress" style="top: 10.5%; right: 10%;">0%</h3>
+            <img class="icon" src="image/pinching.png" style="top: 6%; right: 5%; max-width: 7%; max-height: 7%;" id="hand">
+            <img class="icon-drop" src="image/like.png" style="top: 12%; right: 7%; max-width: 4%; max-height: 4%; transform:rotate(-20deg)" id="heart">
+            <img class="icon" src="image/heartcake.png" style="bottom: 2%; right: 5.5%; max-width: 9%; max-height: 9%;" id="cake">
+            <div class="item_wrap" id="item_wrap">
+                <div class="img-box">
+                    <img src="image/Eclair.jpeg">
+                </div>
+                <p class="item-title" style="font-size: 3vw; top: 1.3vh;; left: 60%;">Éclair</p>
+                <p class="item-title" style="font-size: 1.55vw; top: 11.7vh; left: 43%;">The French Filled and Iced Choux Pastry Dessert</p>
+                <div class="recipe">
+                    <p style="top: 5%; left: 5%;">• 1 cup water</p>
+                    <p style="top: 15%; left: 5%;">• ½ cup butter</p>
+                    <p style="top: 25%; left: 5%;">• 1 cup all-purpose flour</p>
+                    <p style="top: 35%; left: 5%;">• ¼ teaspoon salt</p>
+                    <p style="top: 45%; left: 5%;">• 4 large eggs</p>
+                    <p style="top: 55%; left: 5%;">• 2 ½ cups cold milk</p>
+                    <p style="top: 65%; left: 5%;">• 5 ounce instant vanilla pudding mix</p>
+                    <p style="top: 75%; left: 5%;">• 1 cup heavy cream</p>
+                    <p style="top: 5%; left: 55%;">• 1 ¼ cup confectioners' sugar</p>
+                    <p style="top: 15%; left: 55%;">• 2 teaspoon vanilla extract</p>
+                    <p style="top: 25%; left: 55%;">• 1 ounce semisweet chocolate</p>
+                    <p style="top: 35%; left: 55%;">• 2 tablespoons butter</p>
+                    <p style="top: 45%; left: 55%;">• 3 tablespoons hot water</p>
+                </div>
+                <p class="item-title" style="font-size: 1.55vw; top: 54.86vh; left: 8%;">• What is Éclair ?</p>
+                <section style="top: 62.4vh; left: 8%;">Éclair means lightning in French. Why it has been applied to this pastry is unknown. 
+                                                        Some think it's because you often eat them very fast, or a reference to the gleam of 
+                                                        light from the shiny fondant icing.
+                </section>
+                <section style="top: 70.85vh; left: 8%;">An éclair is a long French pastry made from choux pastry, filled with pastry cream or 
+                                                         custard and dipped in fondant icing. The eclair is making a resurgence in popularity 
+                                                         and can now be seen filled with trendy fillings such as matcha tea or mocha cream filling. 
+                                                         The tops of the pastry may now be decorated with fresh fruit and fanciful fruit glazes. 
+                                                         Frozen eclairs are also to be found with ice cream fillings.
+                </section>
+                <p class="item-title" style="font-size: 1.55vw; top: 87.1vh; left: 8%;">• Make Éclair By Yourself !</p>
+                <section style="top: 94.9vh; left: 12%; width:77%; color:#7d8d9b;">
+                    → Make choux pastry: Combine water and butter in a medium pot. Bring to a boil, 
+                    stirring until butter melts completely. Reduce heat to low; add flour and salt. 
+                    Stir vigorously until mixture leaves the sides of the pan and begins to form a stiff ball. Remove from heat.
+                </section>
+                <section style="top: 107.9vh; left: 12%; width:77%; color:#7d8d9b;">
+                    → Make filling: Combine milk and pudding mix in a medium bowl according to package directions. 
+                    Beat heavy cream with an electric mixer in a separate medium bowl until soft peaks form. 
+                    Beat in confectioners' sugar and vanilla. Fold whipped cream into pudding.
+                </section>
+                <section style="top: 120.9vh; left: 12%; width:77%; color:#7d8d9b;">
+                    → Make icing: Melt chocolate and butter in a medium saucepan over low heat. Stir in confectioners' sugar and vanilla.
+                    Stir in hot water, 1 tablespoon at a time, until icing is smooth and has reached desired consistency. 
+                    Remove from heat and cool slightly.
+                </section>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll("span").forEach((span, index) => {
+              span.style.setProperty("--delay", `${index * 100}ms`);
+            });
+        </script>
+        <script>
+            var t = null;
+            function shift() {
+                icon_visible(0);
+                move_div(0, 0, 'out');
+            }
+            function shift_back() {
+                document.getElementById("pop-menu").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+                document.getElementById("logo").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+            }
+            function move_div(x, y, z) {
+                clearInterval(t);
+                t = setInterval(m, 10);
+                function m(){
+                    if(x == 25){
+                        clearInterval(t);
+                        if(z == 'in'){
+                            icon_visible(1); 
+                        }
+                    }
+                    else{
+                        x += 1;
+                        y += 0.56;
+                        if(z == 'in'){
+                            document.getElementById("main").style.width = (75+x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (y) + 'vw';
+                        }
+                        else{
+                            document.getElementById("main").style.width = (100-x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (14-y) + 'vw';
+                        }
+                    }
+                }
+            }
+            function icon_visible(v) {
+                document.getElementById("hand").style.opacity = v;
+                document.getElementById("heart").style.opacity = v;
+                document.getElementById("cake").style.opacity = v;
+                document.getElementById("progress").style.opacity = v;
+            }
+        </script>
+        <script>
+            const container = document.getElementById('main');
+            const scrollHeight = container.scrollHeight - container.clientHeight;
+            //監聽scroll事件
+            container.addEventListener('scroll', () => {
+                const scrollTop = container.scrollTop;
+                //進度 = (當前滾動條位置/滾動條高度)*100 -> 取整數再加上'%'
+                var progress = `${((scrollTop / scrollHeight) * 100).toFixed(0)}%`;
+                //更新 id='progress' 標籤顯示的進度值
+                document.getElementById("progress").textContent = progress;
+            });
+        </script>
+    </body>
+</html>

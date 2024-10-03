@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>  
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        div {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        #main {
+            overflow: auto;
+            scroll-timeline-name: scroll-time;
+            scroll-timeline-axis: vertical;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*左側彈出的子菜單格式*/
+        li #menu-txt {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            text-align: left;
+            font-weight: normal;
+            line-height: 6vh; 
+            font-size: 1.17vw;
+            border: none;
+            border-radius: 0.5em;
+            color: #819aaf;
+        }
+        li #menu-txt:hover{
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab62;
+            box-shadow: -3px 3px 10px #6a7f90c3;
+            font-weight: bold;
+        }
+        /*Logo的跳動效果*/
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+        /*左側可彈出的菜單*/
+        .pop-menu-field {
+            width: 25vw;
+            height: 90vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .pop-menu {
+            width: 18vw;
+            height: 80vh;
+            left: 3.5vw;
+            top: 0.5vw;
+            position: absolute;
+            background-color: #bccfdfb1;
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*滑動進度條的物件(往下掉的愛心)*/
+        .icon {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0.9;
+        }
+        .icon-drop {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            animation-name: Scroll-Animation1;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation1{
+            from {
+                transform: translateY(0) rotate(-20deg) scale(100%);
+            }
+            to {
+                transform: translateY(76vh) rotate(362deg) scale(60%);
+            }
+        }
+        h3 {
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            animation-name: Scroll-Animation2;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation2{
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(76vh);
+            }
+        }
+        /*物件*/
+        .item_wrap {
+            width: 72vw;
+            height: 245vh;
+            top: 0;
+            left: 14vw;
+            position: absolute;
+            background-color: #bccfdf94;
+            border-radius: 1.3em;
+        }
+        .item {
+            width: 45vw;
+            height: 55vh;
+            left: 4.5vw;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+            transition-property: transform;
+            transition-duration: 0.5s;
+        }
+        .item:hover {
+            transition-duration: 0.5s;
+            transform: scale(103%);
+        }
+        /*物件標題*/
+        .item-title {
+            width: 100%;
+            top: 3vh;
+            position: absolute; 
+            font-size: 1.5vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #819aaf;
+            text-align: center;
+            text-decoration: none;
+        }
+        .item-info{
+            position:absolute; 
+            width:7vw;
+            height:3vh;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab8e;
+            color: white;
+            font-size: 1vw;
+            line-height: 3.5vh;
+            text-align: center;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+        }
+        .item-title:hover {
+            cursor: pointer;
+        }
+        .item-info:hover {
+            cursor: pointer;
+        }
+        /*帖子照片*/
+        .img-box {
+            width: 90%;
+            height: 74.6%;
+            left: 5%;
+            top: 20%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.374);
+            border-radius: 0.5em;
+        }
+        .img-box img {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 0.5em;
+        }
+        /*評論封裝容器*/
+        .comment-box {
+            width: 17.5vw;
+            height: 55vh;
+            left: 45.5vw;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+            overflow: auto;
+        }
+        .comment-box p {
+            font-size: 1.3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            position: absolute;
+        }
+        /*評論者*/
+        .comment-box #user {
+            left: 8%;
+            position: relative;
+            font-size: 1.15vw;
+            font-weight: bold;
+            color: #819aaf;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            transition-property: transform color;
+            transition-duration: 0.3s;
+        }
+        .comment-box #user:hover {
+            transform: scale(105%);
+            color: #6a8295;
+            cursor: pointer;
+            transition-duration: 0.3s;
+        }
+        /*評論框*/
+        .comment-box .comment {
+            width: 15.5vw;
+            height: auto;
+            left: 5%;
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(194, 219, 239, 0.505);
+            border-radius: 1em;
+        }
+        /*評論內容*/
+        .comment section {
+            margin: 1.2vh;
+            width: 14.1vw;
+            height: 100%;
+            word-wrap: break-word;  /*自動換行*/
+            word-break: normal;
+            color: #819aaf;
+            font-family:'Old Standard TT', serif;
+        }
+        /*物件小圖標(星形,地標)*/
+        .uncollect-icon {
+            opacity: 0;
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+            position: absolute;
+        }
+        .collect-icon {
+            opacity: 1;
+            width: auto;
+            height: auto;
+            position: absolute; 
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+            cursor: pointer;
+        }
+        /*星形圖標的晃動動畫(鼠標懸浮時)*/
+        .collect-icon:hover {
+            opacity: 0.5;
+            animation: shake 1s linear forwards;
+        }
+        @keyframes shake {
+            0% {transform: rotate(0deg);}
+            20% {transform: rotate(-20deg);}
+            40% {transform: rotate(20deg);}
+            60% {transform: rotate(-10deg);}
+            80% {transform: rotate(10deg);}
+            100% {transform: rotate(0deg);}
+        }
+        .like-icon {
+            width: auto;
+            height: auto;
+            position: absolute; 
+            opacity: 0.8;
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+        }
+        /*刪除貼文的按鈕*/
+        .delete-btn {
+            top: 3%;
+            left: 3%;
+            position: absolute;
+            border: none;
+            font-size: 1.3vw;
+            color: #819aaf;
+            background-color:  transparent; /*透明背景*/
+            opacity: 0.6;
+        }
+        .delete-btn:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+         /*刪除貼文的確認彈窗*/
+         .dialog {
+            display: none;
+            width: 25vw;
+            height: 20vh;
+            left: 32vw;
+            top: 27vh;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            background: rgb(251, 217, 216);
+            background: linear-gradient(135deg,rgb(251, 217, 216) 0%, rgb(194, 219, 239) 100%);
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+            text-align: center;
+            transition-duration: 0.5s;
+        }
+        .dialog:hover {
+            transform: scale(103%);
+            transition-duration: 0.5s;
+        }
+        /*確認刪除按鈕*/
+        .check-btn {
+            width: 18%;
+            height: 18%;
+            position: absolute; 
+            border: none;
+            border-radius: 0.8em;
+            opacity: 0.7;
+            font-size: 1.18vw;
+            font-family:'Old Standard TT', serif;
+            transition-duration: 0.5s;
+        }
+        .check-btn:hover {
+            cursor: pointer;
+            opacity: 1;
+            transform: scale(103%);
+            transition-duration: 0.5s;
+        }
+        h2 {
+            width: 100%;
+            position: absolute;
+            font-size: 1.2vw;
+            color:  #819aaf;
+            font-family:'Old Standard TT', serif;
+        }
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+            <div class="logo" id="logo" onmouseenter="shift()" onmouseleave="shift_back()">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+        </div>
+        <div class="pop-menu-field" style="background-color: #f6fcff;">
+            <div class="pop-menu" id="pop-menu">
+                <ul style="top: 5%; left:10%; position:absolute;">
+                    <li><a id="menu-txt" href="main.html">Classic Chinese Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic French Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Italian Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Malaysian Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Japanese Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Greek Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Turkish Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="background-color: #f6fcff;" id="main">
+            <h3 id="progress" style="top: 10.5%; right: 10%;">0%</h3>
+            <img class="icon" src="image/pinching.png" style="top: 6%; right: 5%; max-width: 7%; max-height: 7%;" id="hand">
+            <img class="icon-drop" src="image/like.png" style="top: 12%; right: 7%; max-width: 4%; max-height: 4%; transform:rotate(-20deg)" id="heart" name="0008">
+            <img class="icon" src="image/heartcake.png" style="bottom: 2%; right: 5.5%; max-width: 9%; max-height: 9%;" id="cake">
+            <div class="item_wrap" id="item_wrap">
+                <p id="suggest" style="left: 25%; top: 40%; position: absolute; font-size: 1.5vw;font-family:'Old Standard TT', serif; color: #819aaf; opacity:0;">
+                    Explore Déguster, Try to add some Memories!
+                </p>
+                <div class="item" style="top: 4vh;">
+                    <a class="item-title">Muffin</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#HomeMade</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2023/5/02</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Taipei,Taiwan</p>
+                    <div class="img-box">
+                        <img src="image/m1.jpg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;">
+                        <p style="top: 2%; left: 40%;">237 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Lydia Lai</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>Weekend calories don’t count. Savour the flavour.</section>
+                        </div>
+                        <a id="user" style="top: 10vh;" href="person.html">Valada</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>Chocolate and I are soulmates!</section>
+                        </div>
+                        <a id="user" style="top: 12vh;" href="person.html">Dumpling Chen</a>
+                        <div class="comment" style="top: 12vh;"> 
+                            <section>I am dropping by your place right now.</section>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="check_delete(this)" >X</button>
+                </div>
+                <div class="item" style="top: 64vh;">
+                    <a class="item-title">Beh Teung Guai</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#Life</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2023/1/21</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Taichung,Taiwan</p>
+                    <div class="img-box">
+                        <img src="image/m2.jpeg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;">
+                        <p style="top: 2%; left: 40%;">562 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Connie</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>好想吃白糖粿！！！</section>
+                        </div>
+                        <a id="user" style="top: 10vh;" href="person.html">Aaron</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>Oh, this one is my favorite food as well. And, this is the best place to get it.</section>
+                        </div>
+                        <a id="user" style="top: 12vh;" href="person.html">Bernie</a>
+                        <div class="comment" style="top: 12vh;"> 
+                            <section>Deliver it to my place RN!</section>
+                        </div>
+                        <a id="user" style="top: 14vh;" href="person.html">Yien Li</a>
+                        <div class="comment" style="top: 14vh;"> 
+                            <section>穿越了千個萬個時間線裡人海裡相依～♪</section>
+                        </div>
+                        <a id="user" style="top: 16vh;" href="person.html">Yien Li</a>
+                        <div class="comment" style="top: 16vh;"> 
+                            <section>Will you stop showing off and making me feel jealous..!</section>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="check_delete(this)" >X</button>
+                </div>
+                <div class="item" style="top: 124vh;">
+                    <a class="item-title">Profiteroles</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#Travel</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2022/12/08</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Lyon,France</p>
+                    <div class="img-box">
+                        <img src="image/m3.jpg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;">
+                        <p style="top: 2%; left: 40%;">377 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Aileen</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>Stop posting such tasty dishes…!</section>
+                        </div>
+                        <a id="user" style="top: 10vh;" href="person.html">Ryan</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>What a drool-worthy end to the weekend</section>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="check_delete(this)" >X</button>
+                </div>
+                <div class="item" style="top: 184vh;">
+                    <a class="item-title">Moon Cake</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#Life</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2022/09/10</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Zhuhai,Guangdong</p>
+                    <div class="img-box">
+                        <img src="image/m4.jpg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;">
+                        <p style="top: 2%; left: 40%;">295 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Fanny</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>Comme ç'est beau…</section>
+                        </div>
+                        <a id="user" style="top: 10vh;" href="person.html">Jieyu Han</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>月餅拍了拍你說：“中秋快樂！”</section>
+                        </div>
+                        <a id="user" style="top: 12vh;" href="person.html">Yutong Xiao</a>
+                        <div class="comment" style="top: 12vh;"> 
+                            <section>日子比月餅甜～♥</section>
+                        </div>
+                        <a id="user" style="top: 14vh;" href="person.html">Paula</a>
+                        <div class="comment" style="top: 14vh;"> 
+                            <section>This deliciousness has blessed my feed.</section>
+                        </div>
+                    </div>
+                    <button class="delete-btn" onclick="check_delete(this)" >X</button>
+                </div>
+            </div>
+            <div class="dialog" id="dialog">
+                <h2 style="top:18%;">Are You Sure To Delete This Post?</h2>
+                <button class="check-btn" style="left: 28%; top: 58%; background-color: #e35656a4; color:white;" id="true-btn">Sure</button>
+                <button class="check-btn" style="left: 58%; top: 58%; background-color: #9dc3e2a4; color: #687e90;" id="false-btn">No</button>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll("span").forEach((span, index) => {
+              span.style.setProperty("--delay", `${index * 100}ms`);
+            });
+        </script>
+        <script>
+            var t = null;
+            function shift() {
+                icon_visible(0);
+                move_div(0, 0, 'out');
+            }
+            function shift_back() {
+                document.getElementById("pop-menu").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+                document.getElementById("logo").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+            }
+            function move_div(x, y, z) {
+                clearInterval(t);
+                t = setInterval(m, 10);
+                function m(){
+                    if(x == 25){
+                        clearInterval(t);
+                        if(z == 'in'){
+                            icon_visible(1)
+                        }
+                    }
+                    else{
+                        x += 1;
+                        y += 0.56;
+                        if(z == 'in'){
+                            document.getElementById("main").style.width = (75+x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (y) + 'vw';
+                        }
+                        else{
+                            document.getElementById("main").style.width = (100-x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (14-y) + 'vw';
+                        }
+                    }
+                }
+            }
+            function icon_visible(v) {
+                document.getElementById("heart").style.opacity = v;
+                document.getElementById("progress").style.opacity = v;
+                document.getElementById("hand").style.opacity = v;
+                document.getElementById("cake").style.opacity = v;
+            } 
+        </script>
+        <script>
+            const container = document.getElementById('main');
+            //監聽scroll事件
+            container.addEventListener('scroll', () => {
+                Scroll_Status();
+            });
+            function Scroll_Status(){
+                var scrollHeight = container.scrollHeight - container.clientHeight;
+                var scrollTop = container.scrollTop;
+                //進度 = (當前滾動條位置/滾動條高度)*100 -> 取整數再加上'%'
+                var progress = `${((scrollTop / scrollHeight) * 100).toFixed(0)}%`;
+                //更新 id='progress' 標籤顯示的進度值
+                document.getElementById("progress").textContent = progress;
+            }
+        </script>
+        <script>
+            function delete_post(obj) {
+                var $obj = $(obj.parentNode);
+                var $after = $obj.nextAll();
+                $obj.remove();
+                //後面的item往前補
+                $after.each(function () {
+                    var temp = (this.style.top).replace('vh', '');
+                    this.style.top = (temp-60) + 'vh';
+                });
+                //item的高度(單位px)+間距
+                var ih = $(".item").height() + 55;
+                //item-wrap的高度(單位px)
+                var wh = $("#item_wrap").height();
+                //item的數量
+                var num = $(".item").length
+                if(num > 2){
+                    $("#item_wrap").height(wh-ih);
+                    //更新進度條Progress的狀態
+                    Scroll_Status();
+                    //滑動一下，更新ScrollAnimation的狀態
+                    document.getElementById('main').scrollTo({ 
+                        top: container.scrollTop-5,
+                        behavior: 'smooth'
+                    })
+                }
+                if(num == 1){
+                    icon_visible(0)
+                }
+                if(num == 0){
+                    $("#suggest").css('opacity',1);
+                } 
+            }
+            function check_delete(obj) {
+                $("#dialog").css('display', 'block');
+                document.getElementById("true-btn").addEventListener('click', function() {
+                    $("#dialog").css('display', 'none');
+                    delete_post(obj);
+                }); 
+                document.getElementById("false-btn").addEventListener('click', function() {
+                    $("#dialog").css('display', 'none');
+                }); 
+            }
+        </script>
+    </body>
+</html>

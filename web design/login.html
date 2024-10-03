@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">  
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        .pic {
+            width: 40vw;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            background-image: url('image/login-bg.png');
+            /* 當背景圖尺寸小於容器時，不以拼接重複方式鋪滿容器*/
+            background-repeat: no-repeat;
+            /* 背景图基于容器大小伸缩 */
+            background-size: cover;
+        }
+        .bg {
+            background-color: #f6fcff;
+            width: 60vw;
+            height: 100vh;
+            right: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .icon {
+            z-index: 1;  /*控制所在圖層(值越大越上層)*/
+            width: auto;
+            height: auto;
+            max-width: 30%;
+            max-height: 30%;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0;
+        }
+        .login-box {
+            z-index: 2;  /*控制所在圖層(值越大越上層)*/
+            background-color: #BCCFDF;
+            width: 25vw;
+            height: 45vh;
+            left: 58%;
+            top: 23%;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+            text-align: center;
+            font-family:'Old Standard TT', serif;
+            color: #819aaf;
+        }
+        button {
+            width: 5vw;
+            border: none;
+            border-radius: 0.5em;
+            padding: 3%;
+            font-family:'Old Standard TT', serif;
+            font-size: 1.1vw;
+            /* 背景渐变色 */
+            background-image: linear-gradient(to right, #67a6d9, #bb74cdbc, #eb74a2a8 ,#67a6d9);
+            /* 背景渐变色大小 */
+            background-size: 600%;
+            animation: colorful 20s infinite;
+        }
+        button:hover {
+            animation: none;
+        }
+        @keyframes colorful {
+            100% {
+                background-position: -600% 0;
+            }
+        } 
+        input {
+            border: none; /*不要邊框*/
+            outline: none;  /*按下去之後也不要有框線*/
+            height: 5%;
+            border-bottom: 1.5px solid #819aaf;
+            background-color:  transparent; /*透明背景*/
+            color: #6e8597; /*文字顏色*/
+            font-size: 1.1vw;
+            font-family: 'Old Standard TT', serif;
+        }
+        input:focus {
+            height: 6.5%;
+        }
+    </style>
+    <body>
+        <div class="pic" id="pic"></div>
+        <div class="bg" id="bg">
+            <img class="icon" id="icon-up" src="image/chef.png" style="bottom: 61%; right: 20%;">
+            <div class="login-box" id="login-box" onmouseenter="iconPOP()">
+                <br>
+                <h1>Login</h1>
+                <h3 style="left:15%; top:30%; position:absolute;">Account</h3>
+                <input id="input1" style="left:37%; top:35%; position:absolute;" onfocus="iconPOP()">
+                <h3 style="left:15%; top:47%; position:absolute;">Password</h3>
+                <input id="input2" type="password" style="left:39%; top:53%; position:absolute;" onfocus="iconPOP()">
+                <button style="left:42%; top:75%; position:absolute;"> 
+                    <a style="text-decoration: none; color:white;" href="homepage.html">Login</a>
+                </button>
+            </div>
+        </div>
+        <script>
+            function iconPOP() {
+                document.getElementById("icon-up").style.opacity=1;
+                document.getElementById("login-box").style.transform = 'scale('+103+'%)';
+                document.getElementById("login-box").addEventListener('mouseleave', function() {
+                    document.getElementById("input1").addEventListener('focusout', function() {
+                        document.getElementById("icon-up").style.opacity=0;
+                        document.getElementById("login-box").style.transform = 'scale('+100+'%)';
+                    });  
+                }); 
+                document.getElementById("login-box").addEventListener('mouseleave', function() {
+                    document.getElementById("input2").addEventListener('focusout', function() {
+                        document.getElementById("icon-up").style.opacity=0;
+                        document.getElementById("login-box").style.transform = 'scale('+100+'%)';
+                    });  
+                }); 
+            }
+        </script>
+    </body>
+</html>

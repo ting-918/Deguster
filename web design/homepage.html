@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">
+        <!--引入swiper.css文件-->
+        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">    
+    </head>
+    <style>
+        .swiper {
+            width: 100vw;
+            height: 100vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }  
+        .swiper-slide {
+            /*背景圖在尺寸小於容器時不以重複拼接的方式鋪滿容器*/
+            background-repeat: no-repeat;
+            /*背景圖基於容器大小，按比例縮放剪裁*/
+            background-size: cover;
+            transition-property: background-color, background-blend-mode;
+            transition-duration: 0.5s;
+        }
+        /* 分頁器圓點的顏色 */
+        .swiper-pagination-bullet-active {
+            background-color: #fff;
+        }    
+        .swiper-slide .hover-field{
+            width: 100%;
+            height: 80%;
+            top: 10%;
+            position: absolute; /* 相對於最近的已定位父元素固定 */
+        }
+        .hover-field .title {
+            border: none;
+            width: 70%;
+            height: 50%;
+            top: 25%;
+            right: 15%;
+            position: absolute; 
+            text-align: center;
+        }
+        /*標題框設置偽元素(用於後續框線動畫效果的實現)*/
+        .title::before {
+            content: "";
+            top: 0;
+            right: 0;
+            position: absolute;
+            border: 0.8px solid #fff;
+            width: 0%;
+            height: 0%;
+            transition-property: all;
+            transition-duration: 0.2s;
+        }
+        .title::after {
+            content: "";
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            border: 0.8px solid #fff;
+            width: 0%;
+            height: 0%;
+            transition-property: all;
+            transition-duration: 0.2s;
+        }
+        /*標題文字*/
+        .title p{
+            top: 30%;
+            left: 50%;
+            width: 15vw;
+            position: absolute;
+            transform: translate(-80%, -50%);
+            font-family: serif;
+            font-size: 28px;
+            color:#fff;
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition-duration: 0.1s;
+        }
+        /*該標題的跳轉鏈接*/
+        .title a{
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-150%, -50%);
+            font-family: serif;
+            font-size: 20px;
+            color:#fff;
+            cursor: pointer;
+            text-decoration: none; /*不要下劃線*/
+            opacity: 0;
+            transition-property: transform, opacity;
+            transition-duration: 0.1s;
+        }
+        /*框線動畫(before偽元素從右上起始, after偽元素從左下起始)*/
+        .hover-field:hover .title::before{
+            z-index: 1;
+            width:100%;
+            height:100%;
+            border-left: none;
+            border-bottom: none;
+            transition-duration: 0.5s;
+        }
+        .hover-field:hover .title::after{
+            z-index: 1;
+            width:100%;
+            height:100%;
+            border-right: none;
+            border-top: none;
+            transition-duration: 0.5s;
+        }
+        /*(標題文字)p標籤淡入居中*/
+        .hover-field:hover .title p{
+            transition-duration: 0.5s;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        /*(標題鏈接)a標籤淡入居中*/
+        .hover-field:hover .title a{
+            transition-duration: 1s;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        /*背景圖片變暗*/
+        .swiper-slide:hover {
+            transition-duration: 0.5s;
+            background-color: rgba(164, 164, 164, 0.716);
+            background-blend-mode: multiply;
+        }
+    </style>
+    <body>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background-image:url('image/1.jpeg')">
+                    <div class="hover-field">
+                        <div class="title">
+                            <p>World Wide</p>
+                            <a href="test.html">- view more -</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image:url('image/2.jpeg')">
+                    <div class="hover-field">
+                        <div class="title">
+                            <p>Hot 10 Weekly</p>
+                            <a href="community.html">-view more-</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image:url('image/3.jpeg')">
+                    <div class="hover-field">
+                        <div class="title">
+                            <p>Today's Special</p>
+                            <a href="article.html">-view more-</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image:url('image/4.jpeg')">
+                    <div class="hover-field">
+                        <div class="title">
+                            <p>Today's Highlight</p>
+                            <a href="person.html">-view more-</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide" style="background-image:url('image/5.jpeg')">
+                    <div class="hover-field">
+                        <div class="title">
+                            <p>Account</p>
+                            <a href="account.html">-view more-</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+        
+        <!--引入swiper.js文件-->
+        <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"> </script>
+        <script>
+            var mySwiper = new Swiper ('.swiper', {
+                direction: 'horizontal', // 水平切换选项
+                loop: true, // 循环模式选项
+                slidesPerView : 3, //一頁顯示3個slide
+                // 分页器
+                pagination: {
+                  el: '.swiper-pagination',
+                },
+                //滑動控件
+                mousewheel: {
+                    sensitivity: 1,
+                  }
+              });  
+        </script>
+    </body>
+</html>

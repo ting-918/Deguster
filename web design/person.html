@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">
+        <!--引入jquery.js文件-->
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>  
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        div {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        #main {
+            overflow: auto;
+            scroll-timeline-name: scroll-time; /*將滾動時間軸綁定到該容器*/
+            scroll-timeline-axis: vertical;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*左側彈出的子菜單格式*/
+        li #menu-txt {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            text-align: left;
+            font-weight: normal;
+            line-height: 6vh; 
+            font-size: 1.17vw;
+            border: none;
+            border-radius: 0.5em;
+            color: #819aaf;
+        }
+        li #menu-txt:hover{
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab62;
+            box-shadow: -3px 3px 10px #6a7f90c3;
+            font-weight: bold;
+        }
+        /*Logo的跳動效果*/
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+        /*左側可彈出的菜單*/
+        .pop-menu-field {
+            width: 25vw;
+            height: 90vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .pop-menu {
+            width: 18vw;
+            height: 80vh;
+            left: 3.5vw;
+            top: 0.5vw;
+            position: absolute;
+            background-color: #bccfdfb1;
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*滑動進度條的物件(往下掉的愛心)*/
+        .icon {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0.9;
+        }
+        .icon-drop {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            animation-name: Scroll-Animation1;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation1{
+            from {
+                transform: translateY(0) rotate(-20deg) scale(100%);
+            }
+            to {
+                transform: translateY(76vh) rotate(362deg) scale(60%);
+            }
+        }
+        h3 {
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 1;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            animation-name: Scroll-Animation2;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        @keyframes Scroll-Animation2{
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(76vh);
+            }
+        }
+        /*物件*/
+        .item_wrap {
+            width: 72vw;
+            height: 185vh;
+            top: 0;
+            left: 14vw;
+            position: absolute;
+            background-color: #bccfdf94;
+            border-radius: 1.3em;
+        }
+        .item {
+            width: 45vw;
+            height: 55vh;
+            left: 4.5vw;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+        }
+        /*物件標題*/
+        .item-title {
+            width: 100%;
+            top: 3vh;
+            position: absolute; 
+            font-size: 1.5vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #819aaf;
+            text-align: center;
+            text-decoration: none;
+        }
+        .item-info{
+            position:absolute; 
+            width:7vw;
+            height:3vh;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab8e;
+            color: white;
+            font-size: 1vw;
+            line-height: 3.5vh;
+            text-align: center;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+        }
+        .item-title:hover {
+            cursor: pointer;
+        }
+        .item-info:hover {
+            cursor: pointer;
+        }
+        /*發布者信息*/
+        .profile {
+            width: auto;
+            height: auto;
+            max-width: 11%;
+            max-height: 11%;
+            top: 1vh;
+            left: 1.5vw;
+            position: absolute;
+            transition-property: transform;
+            transition-duration: 0.5s;
+        }
+        .user-id {
+            top: 2.5vh;
+            left: 5vw;
+            position: absolute; 
+            color: #8398a9;
+            font-size: 1.15vw;
+            line-height: 3.5vh;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+        }
+        .user-id:hover {
+            cursor: pointer;
+        }
+        /*貼文照片*/
+        .img-box {
+            width: 90%;
+            height: 74.6%;
+            left: 5%;
+            top: 20%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.374);
+            border-radius: 0.5em;
+        }
+        .img-box img {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 0.5em;
+        }
+        /*評論框*/
+        .comment-box {
+            width: 17.5vw;
+            height: 48vh;
+            left: 45.5vw;
+            top: 0;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+            overflow: auto;
+        }
+        .comment-box p {
+            font-size: 1.3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            position: absolute;
+        }
+        .comment-box #user {
+            left: 8%;
+            position: relative;
+            font-size: 1.15vw;
+            font-weight: bold;
+            color: #819aaf;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            transition-property: transform color;
+            transition-duration: 0.3s;
+        }
+        .comment-box #user:hover {
+            transform: scale(105%);
+            color: #6a8295;
+            cursor: pointer;
+            transition-duration: 0.3s;
+        }
+        .comment-box .comment {
+            width: 15.5vw;
+            height: auto;
+            left: 5%;
+            position: relative;
+            overflow: hidden;
+            background-color: rgba(194, 219, 239, 0.505);
+            border-radius: 1em;
+        }
+        .comment section {
+            margin: 1.2vh;
+            width: 14.1vw;
+            height: 100%;
+            word-wrap: break-word;  /*自動換行*/
+            word-break: normal;
+            color: #819aaf;
+            font-family:'Old Standard TT', serif;
+        }
+        /*編輯評論並發送的框*/
+        .box {
+            width: 17.5vw;
+            height: 6.5vh;
+            left: 45.5vw;
+            top: 48.5vh;
+            position: absolute;
+            text-align: center;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+        }
+        .box input {
+            border: none;   /*不要邊框*/
+            outline: none;  /*按下去之後也不要有框線*/
+            top: 15%;
+            height: 60%;
+            width: 14vw;
+            position: relative;
+            padding-left: 1vw;
+            padding-right: 1vw;
+            color: #6e8597; 
+            font-size: 1.1vw;
+            font-family: 'Old Standard TT', serif;
+            background-color: rgba(210, 229, 245, 0.572);
+            border-radius: 1.3em;
+        }
+        .box button {
+            background-image: url('image/up-arrow.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.8;
+            width: 2.1vw;
+            height: 3.5vh;
+            top: 1.5vh;
+            left: 17.8vw;
+            position: absolute;
+            border: none;
+            border-radius: 50%;
+        }
+        .box button:hover{
+            opacity: 1;
+            transform: scale(107%);
+            cursor: pointer;
+        }
+        /*物件小圖標(星形,地標)*/
+        .like-icon {
+            width: auto;
+            height: auto;
+            position: absolute; 
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+            cursor: pointer;
+        }
+        #no {
+            opacity: 0.3;
+        }
+        #yes {
+            opacity: 0.9;
+        }
+        .like-icon:hover {
+            animation: shake 1s linear forwards;
+        }
+        @keyframes shake {
+            0% {transform: rotate(0deg);}
+            20% {transform: rotate(-20deg);}
+            40% {transform: rotate(20deg);}
+            60% {transform: rotate(-10deg);}
+            80% {transform: rotate(10deg);}
+            100% {transform: rotate(0deg);}
+        }
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+            <div class="logo" id="logo" onmouseenter="shift()" onmouseleave="shift_back()">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+        </div>
+        <div class="pop-menu-field" style="background-color: #f6fcff;">
+            <div class="pop-menu" id="pop-menu">
+                <ul style="top: 5%; left:10%; position:absolute;">
+                    <li><a id="menu-txt" href="main.html">Classic Chinese Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic French Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Italian Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Malaysian Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Japanese Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Greek Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Turkish Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="background-color: #f6fcff;" id="main">
+            <h3 id="progress" style="top: 10.5%; right: 10%;">0%</h3>
+            <img class="icon" src="image/pinching.png" style="top: 6%; right: 5%; max-width: 7%; max-height: 7%;" id="hand">
+            <img class="icon-drop" src="image/like.png" style="top: 12%; right: 7%; max-width: 4%; max-height: 4%; transform:rotate(-20deg)" id="heart" name="0008">
+            <img class="icon" src="image/heartcake.png" style="bottom: 2%; right: 5.5%; max-width: 9%; max-height: 9%;" id="cake">
+            <div class="item_wrap" id="item_wrap">
+                <div class="item" style="top: 4vh;">
+                    <img class="profile" src="image/woman.png" href="person.html"> 
+                    <a class="user-id" href="person.html">Lydia Lai</a>
+                    <a class="item-title">Paris-Brest</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#Travel</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2023/03/14</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Paris,France</p>
+                    <div class="img-box">
+                        <img src="image/Paris-Brest.jpeg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;" id="no" onclick="change(this)">
+                        <p style="top: 2%; left: 40%;">334 likes</p>
+                        <a id="user" style="top: 10vh;" href="person.html">Bernice</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>C'est vraiment.</section>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <input placeholder="Leave a Comment..." onfocus="this.placeholder=''" onfocusout="placeholder_set(this)">
+                        <button onclick="send(this)"></button>
+                    </div>
+                </div>
+                <div class="item" style="top: 64vh;">
+                    <img class="profile" src="image/woman.png" href="person.html"> 
+                    <a class="user-id" href="person.html">Lydia Lai</a>
+                    <a class="item-title">Éclair</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#Life</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2023/02/25</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Lyon,France</p>
+                    <div class="img-box">
+                        <img src="image/Eclair2.jpeg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;" id="no" onclick="change(this)">
+                        <p style="top: 2%; left: 40%;">726 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Cora</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>J'en ai l'eau à la bouche.</section>
+                        </div>
+                        <a id="user" style="top: 10vh;" href="person.html">Aaron</a>
+                        <div class="comment" style="top: 10vh;"> 
+                            <section>Oh, this one is my favorite food as well. And, this is the best place to get it.</section>
+                        </div> 
+                    </div>
+                    <div class="box">
+                        <input placeholder="Leave a Comment..." onfocus="this.placeholder=''" onfocusout="placeholder_set(this)">
+                        <button onclick="send(this)"></button>
+                    </div>
+                </div>
+                <div class="item" style="top: 124vh;">
+                    <img class="profile" src="image/woman.png" href="person.html"> 
+                    <a class="user-id" href="person.html">Lydia Lai</a>
+                    <a class="item-title">Galette</a>
+                    <a class="item-info" style="top: 13%; left: 24%;">#HomeMade</a>
+                    <p class="item-info" style="top: 10%; left: 40.5%;">2023/06/06</p>
+                    <p class="item-info" style="top: 10%; left: 57%; width:9vw;">Lyon,France</p>
+                    <div class="img-box">
+                        <img src="image/galette.jpeg">
+                    </div>
+                    <div class="comment-box">
+                        <img class="like-icon" src="image/like.png" style="top: 6%; left: 27%; max-width: 10%;" id="no" onclick="change(this)">
+                        <p style="top: 2%; left: 40%;">285 likes</p>
+                        <a id="user" style="top: 8vh;" href="person.html">Eunice</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>Comme ç'est beau…</section>
+                        </div>
+                        <a id="user" style="top: 8vh;" href="person.html">Diana</a>
+                        <div class="comment" style="top: 8vh;"> 
+                            <section>C'est un délice!</section>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <input placeholder="Leave a Comment..." onfocus="this.placeholder=''" onfocusout="placeholder_set(this)">
+                        <button onclick="send(this)"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll("span").forEach((span, index) => {
+              span.style.setProperty("--delay", `${index * 100}ms`);
+            });
+        </script>
+        <script>
+            /*實現左側菜單漸進移入/出動畫效果*/
+            var t = null;
+            function shift() {
+                icon_visible(0);
+                move_div(0, 0, 'out');
+            }
+            function shift_back() {
+                document.getElementById("pop-menu").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+                document.getElementById("logo").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+            }
+            function move_div(x, y, z) {
+                clearInterval(t);
+                t = setInterval(m, 10);
+                function m(){
+                    if(x == 25){
+                        clearInterval(t);
+                        if(z == 'in'){
+                            icon_visible(1)
+                        }
+                    }
+                    else{
+                        x += 1;
+                        y += 0.56;
+                        if(z == 'in'){
+                            document.getElementById("main").style.width = (75+x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (y) + 'vw';
+                        }
+                        else{
+                            document.getElementById("main").style.width = (100-x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (14-y) + 'vw';
+                        }
+                    }
+                }
+            }
+            function icon_visible(v) {
+                document.getElementById("heart").style.opacity = v;
+                document.getElementById("progress").style.opacity = v;
+                document.getElementById("hand").style.opacity = v;
+                document.getElementById("cake").style.opacity = v;
+            } 
+        </script>
+        <script>
+            const container = document.getElementById('main');
+            //監聽scroll事件
+            container.addEventListener('scroll', () => {
+                Scroll_Status();
+            });
+            function Scroll_Status(){
+                var scrollHeight = container.scrollHeight - container.clientHeight;
+                var scrollTop = container.scrollTop;
+                //進度 = (當前滾動條位置/滾動條高度)*100 -> 取整數再加上'%'
+                var progress = `${((scrollTop / scrollHeight) * 100).toFixed(0)}%`;
+                //更新 id='progress' 標籤顯示的進度值
+                document.getElementById("progress").textContent = progress;
+            }
+        </script>
+        <script>
+            //增加新留言
+            function send(obj) {
+                var $input = $(obj.previousElementSibling);
+                var txt = $input.val();
+                //清空input，並恢復默認字段
+                $input.val("");
+                placeholder_set($input);
+                if((txt != "") && (txt != "Leave a Comment...")){
+                    var $box = $(obj.parentNode.previousElementSibling);
+                    var $node = $box.children('p');
+                    var user = $("<a id='user' style='top: 8vh;' href='person.html'></a>").text('Selena'); 
+                    var comment = $("<section></section>").text(txt);
+                    //把原先有的留言都向後移，空出位置塞進新留言
+                    $box.children('a').each(function () {
+                        var p = parseInt(this.style.top);
+                        var d = this.nextElementSibling;
+                        this.style.top = (p+2) + 'vh';
+                        d.style.top = (p+2) + 'vh';
+                    });  
+                    //將jquery創建的元素(新留言)加入該結點後
+                    $node.after(user, comment); 
+                    //<section>外面包上一層div
+                    $box.children().eq(3).wrap("<div class='comment' style='top: 8vh;'></div>");
+                }
+            }
+            //恢復默認字段
+            function placeholder_set(obj) {
+                if($(obj).val() == ""){
+                    $(obj).attr('placeholder', 'Leave a Comment...');
+                }
+            }
+        </script>
+        <script>
+            function change(obj) {
+                var likes = obj.nextElementSibling;
+                var amount = parseInt(likes.innerHTML);
+                if(obj.id == 'yes'){
+                    amount = amount-1;
+                    obj.id = 'no';
+                }
+                else{
+                    amount = amount+1;
+                    obj.id = 'yes';
+                }
+                likes.innerHTML = `${amount} likes`;
+            }
+        </script>
+    </body>
+</html>

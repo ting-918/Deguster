@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">   
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        .map {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .map a {
+            z-index: 2;     /*控制所在圖層(值越大越上層)*/
+            color: white; 
+            border: none;
+            border-radius: 0.5em;
+            position: fixed;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none; 
+            font-size: 1.55vw;
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.5s;
+        }
+        .map a:hover{
+            opacity: 1;
+            transition-duration: 0.5s;
+        }
+        .continent {
+            z-index:1;  /*控制所在圖層(值越大越上層)*/
+            width: auto;
+            height: auto;
+            position: fixed; 
+            opacity: 0.8;
+            transition-property: scale, opacity;
+            transition-duration: 0.5s;
+        }
+        .icon {
+            z-index:2;  /*控制所在圖層(值越大越上層)*/
+            width: auto;
+            height: auto;
+            max-width: 7%;
+            max-height: 7%;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0;
+        }
+        .continent:hover {
+            transform: scale(1.03);
+            opacity: 1;
+            transition-duration: 0.5s;
+        }
+        .continent:hover+a{
+            opacity: 0.2;
+            transition-duration: 0.3s;
+        }
+        a {
+            text-decoration: none;
+        }
+        .pop-menu-field {
+            width: 25vw;
+            height: 90vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .pop-menu {
+            width: 18vw;
+            height: 80vh;
+            left: 3.5vw;
+            top: 0.5vw;
+            position: absolute;
+            background-color: #bccfdfb1;
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*左側彈出的子菜單格式*/
+        li #menu-txt {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            text-align: left;
+            font-weight: normal;
+            line-height: 6vh; 
+            font-size: 1.17vw;
+            border: none;
+            border-radius: 0.5em;
+            color: #819aaf;
+        }
+        li #menu-txt:hover{
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab62;
+            box-shadow: -3px 3px 10px #6a7f90c3;
+            font-weight: bold;
+        }
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <div class="logo" id="logo" onmouseenter="shift()">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+        </div>
+        <div class="pop-menu-field" style="background-color: #f6fcff;">
+            <div class="pop-menu" id="pop-menu">
+                <ul style="top: 5%; left:10%; position:absolute;">
+                    <li><a id="menu-txt" href="main.html">Classic Chinese Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic French Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Italian Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Malaysian Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Japanese Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Greek Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Turkish Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="map" id="map" style="background-color: #f6fcff;">
+            <img class="continent" name="NA" src="image/NA.png" style="max-width: 28.7%; max-height: 34.2%; bottom: 46.8%; right: 46.2%;" onmouseover="iconPOP('NA')" >
+            <a style="bottom: 60%; right: 62%;" href="main2.html" name="NA" onmouseover="iconPOP2('NA')" >Explore</a>
+            <img class="icon" src="image/NA-pancakes.png" style="bottom: 65%; right: 67%; transform:rotate(-20deg);" name="NA">
+            <img class="icon" src="image/NA-cupcake.png" style="bottom: 66%; right: 63%;" name="NA">
+            <img class="icon" src="image/NA-donut.png" style="bottom: 65%; right: 59%; transform:rotate(20deg);" name="NA">
+                
+            <img class="continent" name="SA" src="image/SA.png" style="max-width: 14%; max-height: 34.2%; top: 48.6%;right: 50.9%;" onmouseover="iconPOP('SA')">
+            <a style="bottom: 32%; right: 54.5%;" href="main2.html" name="SA" onmouseover="iconPOP2('SA')" >Explore</a>
+            <img class="icon" src="image/SA-alfajor.png" style="bottom: 35%; right: 59.5%; transform:rotate(-20deg);" name="SA">
+            <img class="icon" src="image/SA-tres-leches-cake.png" style="bottom: 37%; right: 55%;" name="SA">
+            <img class="icon" src="image/SA-picarones.png" style="bottom: 35%; right: 50.5%; transform:rotate(20deg);" name="SA">
+
+            <img class="continent" name="EU" src="image/EU.png" style="max-width: 16.47%; max-height: 34.2%; top: 21.7%;right: 32.4%;" onmouseover="iconPOP('EU')">
+            <a style="bottom: 67%; right: 33.5%;" href="main2.html" name="EU" onmouseover="iconPOP2('EU')" >Explore</a>
+            <img class="icon" src="image/EU-scone.png" style="bottom: 77%; right: 41%; transform:rotate(-20deg);" name="EU">
+            <img class="icon" src="image/EU-madeleine.png" style="bottom: 79%; right: 37%;" name="EU">
+            <img class="icon" src="image/EU-macaron.png" style="bottom: 78%; right: 32%; transform:rotate(15deg);" name="EU">
+                
+            <img class="continent" name="AS" src="image/AS.png" style="max-width: 27.51%; max-height: 42.3%; top: 20.9%;right: 11%;" onmouseover="iconPOP('AS')">
+            <a style="bottom: 58%; right: 20%;" href="main2.html" name="AS" onmouseover="iconPOP2('AS')" >Explore</a>
+            <img class="icon" src="image/AS-grass-jelly.png" style="bottom: 63%; right: 25%; transform:rotate(-20deg);" name="AS">
+            <img class="icon" src="image/AS-moon-cake.png" style="bottom: 64%; right: 21%;" name="AS">
+            <img class="icon" src="image/AS-mochi.png" style="bottom: 63%; right: 16.5%; transform:rotate(20deg);" name="AS">
+                
+            <img class="continent" name="AF" src="image/AF.png" style="max-width: 18.2%; max-height: 34.2%; top: 38.9%;right: 31.5%;" onmouseover="iconPOP('AF')">
+            <a style="bottom: 41%; right: 35%;" href="main2.html" name="AF" onmouseover="iconPOP2('AF')" >Explore</a>
+            <img class="icon" src="image/AF-ugali.png" style="bottom: 47%; right: 40%; transform:rotate(-20deg);" name="AF">
+            <img class="icon" src="image/AF-melktert.png" style="bottom: 45%; right: 35.5%;" name="AF">
+            
+            <img class="continent" name="AT" src="image/AT.png" style="max-width: 14.91%; max-height: 24.6%; top: 56.4%;left: 80.2%;" onmouseover="iconPOP('AT')">
+            <a style="bottom: 29%; right: 10%;" href="main2.html" name="AT" onmouseover="iconPOP2('AT')" >Explore</a>
+            <img class="icon" src="image/AT-pavlova.png" style="bottom: 20%; right: 15%; transform:rotate(15deg);" name="AT">
+            <img class="icon" src="image/AT-lamington.png" style="bottom: 18%; right: 11%; transform:rotate(-20deg);" name="AT">
+        </div>
+    <script>
+        var time = null;
+        function iconPOP(name) {
+            var obj = document.getElementsByName(name);
+            var num = obj.length;
+            var x = 0;
+            clearInterval(time);
+            time = setInterval(pop, 10);
+            function pop(){
+                if(x == 1){
+                    clearInterval(time);
+                }
+                else{
+                    x += 0.02;
+                    for(var i=2; i<num; i++){
+                        obj[i].style.opacity=x;
+                    }
+                }
+            }
+            obj[0].addEventListener('mouseout', function() {
+                clearInterval(time);
+                for(var i=2; i<num; i++){
+                    obj[i].style.opacity=0;
+                }
+            });
+        }
+        function iconPOP2(name) {
+            var obj = document.getElementsByName(name);
+            var num = obj.length;
+            for(var i=2; i<num; i++)
+                obj[i].style.opacity=1;
+            obj[0].addEventListener('mouseout', function() {
+                for(var i=2; i<num; i++){
+                    obj[i].style.opacity=0;
+                }
+            });
+        }
+    </script>
+    <script>
+        document.querySelectorAll("span").forEach((span, index) => {
+          span.style.setProperty("--delay", `${index * 150}ms`);
+        });
+    </script>
+    <script>
+        var t = null;
+        var t1 = null;
+        function shift() {
+            var x = 0;
+            clearInterval(t);
+            t = setInterval(div_in, 10);
+            function div_in(){
+                if(x == 25){
+                    clearInterval(t);
+                }
+                else{
+                    x += 1
+                    document.getElementById("map").style.width = (100-x) + 'vw';
+                }
+            }
+            document.getElementById("pop-menu").addEventListener('mouseleave', function() {
+                var x = 0;
+                t1 = setInterval(div_out, 10);
+                function div_out(){
+                    if(x == 25){
+                        clearInterval(t1);
+                    }
+                    else{
+                        x += 1
+                        document.getElementById("map").style.width = (75+x) + 'vw';
+                    }
+                }
+            });
+        }
+    </script>
+    </body>
+</html>

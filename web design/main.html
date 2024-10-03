@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>2020056037黃鈺庭</title>
+        <meta name="author" content="黃鈺庭" />
+        <meta charset="UTF-8">
+    </head>
+    <style>
+        /*加載google font字體*/
+        @import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@700&display=swap');
+        div {
+            width: 100vw;
+            height: 90vh;
+            right: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        #main {
+            overflow: auto;
+            scroll-timeline-name: scroll-time;
+            scroll-timeline-axis: vertical;
+        }
+        /*物件*/
+        .item_wrap {
+            width: 72vw;
+            height: 215vh;
+            top: 0%;
+            left: 14vw;
+            position: absolute;
+            background-color: #bccfdf94;
+            border-radius: 1.3em;
+        }
+        .item {
+            width: 60vw;
+            height: 15vh;
+            left: 6vw;
+            position: absolute;
+            background-color: #f6fcffd1;
+            border-radius: 1.3em;
+            transition-property: transform;
+            transition-duration: 0.5s;
+        }
+        .item:hover {
+            transition-duration: 0.5s;
+            transform: scale(103%);
+        }
+        ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        /*頂端的導航欄*/
+        .menu_bar {
+            width: 100vw;
+            height: 10vh;
+            left: 0;
+            top: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        /*頂端的導航欄格式*/
+        li #bar-txt {
+            display: block;
+            width: 10%;
+            position: absolute;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            font-weight: normal;
+            line-height: 11.2vh; 
+            font-size: 1.55vw;
+            color: #BCCFDF;
+        }
+        li #bar-txt:hover {
+            cursor: pointer;
+            color: #819aaf;
+            font-weight: bold;
+            font-size: 1.7vw;
+        }
+        /*左側彈出的子菜單格式*/
+        li #menu-txt {
+            display: block;
+            width: 100%;
+            position: relative;
+            font-family:'Old Standard TT', serif;
+            text-decoration: none;
+            text-align: left;
+            font-weight: normal;
+            line-height: 6vh; 
+            font-size: 1.17vw;
+            border: none;
+            border-radius: 0.5em;
+            color: #819aaf;
+        }
+        li #menu-txt:hover{
+            cursor: pointer;
+            text-align: center;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7f97ab62;
+            box-shadow: -3px 3px 10px #6a7f90c3;
+            font-weight: bold;
+        }
+        /*Logo的跳動效果*/
+        .logo{
+            text-align: center;
+            width: 20%;
+            height: 100%;
+            left: 4%;
+            position: absolute;
+          }
+        .logo span {
+            display: inline-block;
+            line-height: 10vh;
+            font-size: 3vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #BCCFDF;
+        }
+        .logo:hover span{
+            animation: jump 500ms linear forwards;
+            animation-delay: var(--delay);
+        }
+        @keyframes jump {
+            0%,
+              100% {
+                transform: translateY(0);
+              }
+            50% {
+              transform: translateY(-10px);
+              color: #819aaf;
+            }
+        }
+        /*左側可彈出的菜單*/
+        .pop-menu-field {
+            width: 25vw;
+            height: 90vh;
+            left: 0;
+            bottom: 0;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+        }
+        .pop-menu {
+            width: 18vw;
+            height: 80vh;
+            left: 3.5vw;
+            top: 0.5vw;
+            position: absolute;
+            background-color: #bccfdfb1;
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*滑動進度條的物件(往下掉的愛心)*/
+        .icon {
+            width: auto;
+            height: auto;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            opacity: 0.9;
+        }
+        .icon-drop {
+            width: auto;
+            height: auto;
+            position: fixed; 
+            opacity: 1;
+            animation-name: Scroll-Animation1;
+            animation-duration: auto;
+            animation-timeline: scroll-time;  /*採用滑動條的進度作為動畫時間軸*/
+        }
+        /*下墜圖標(愛心)的動畫實現*/
+        @keyframes Scroll-Animation1{
+            from {
+                transform: translateY(0) rotate(-20deg) scale(100%);
+            }
+            to {
+                transform: translateY(76vh) rotate(362deg) scale(60%);
+            }
+        }
+        h3{
+            position: fixed; 
+            opacity: 1;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #f37676;
+            animation-name: Scroll-Animation2;
+            animation-duration: auto;
+            animation-timeline: scroll-time;
+        }
+        /*閱讀進度*/
+        @keyframes Scroll-Animation2{
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(76vh);
+            }
+        }
+        /*物件標題*/
+        .title-wrap {
+            top: 5%;
+            left: 3%;
+            position: absolute; 
+            width: 23%;
+            height: 90%;
+            text-align: center;
+        }
+        .item-title {
+            position: relative; 
+            font-size: 1.5vw;
+            font-weight: bold;
+            font-family:'Old Standard TT', serif;
+            color: #819aaf;
+        }
+        /*彈窗*/
+        .dialog {
+            display: none;
+            width: 35vw;
+            height: 50vh;
+            left: 32vw;
+            top: 27vh;
+            position: fixed; /* 相對於瀏覽器窗口固定 */
+            background: rgba(251, 217, 216, 0.839);
+            background: linear-gradient(135deg, rgba(251, 217, 216, 0.839) 0%, rgba(194, 219, 239, 0.919) 100%);
+            border-radius: 1.3em;
+            box-shadow: -5px 5px 12px #6a7f90c3;
+        }
+        /*彈窗的關閉按鈕*/
+        .close-button {
+            width: 7%;
+            height: 9%;
+            right: 5%;
+            top: 5%;
+            position: absolute; 
+            border: none;
+            border-radius: 50%;
+            background-color: #94badad2;
+            color: white;
+        }
+        .close-button:hover {
+            cursor: pointer;
+            transform: scale(107%);
+        }
+        /*彈窗中的Select Option(懸浮下拉菜單形式)*/
+        .selector {
+            width: 6.5vw;
+            height: 3.8vh;
+            top: 20%;
+            left: 15%;
+            position: absolute;
+            border-radius: 0.5em;
+            background-color: rgba(255, 255, 255, 0.374);
+        }
+        #selectField p {
+            bottom: 26%;
+            position: relative;
+            text-align: center;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            color:#a7b8c6; 
+            cursor: pointer;
+        }
+        #tag-list {
+            z-index: 2;
+            visibility: hidden;
+            width: 100%;
+            top: 104%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.374); /*半透明背景*/
+            border-radius: 0.5em;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .tag-opt {
+            position: relative;
+            text-align: center;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            color: #9fb5c5;
+            transition-property: color, transform;
+            transition-duration: 0.5s;
+        }
+        .tag-opt:hover {
+            color: #304353c3;
+            transform: scale(110%);
+        }
+        /*彈窗的upload file控件(實現用戶自行選擇本地圖檔上傳的功能)*/
+        .upload {
+            width: 17.5vw;
+            height: 3.8vh;
+            top: 20%;
+            left: 34.5%;
+            position: absolute;
+            border-radius: 0.5em;
+            background-color: rgba(255, 255, 255, 0.374);
+            transition-duration: 0.5s;
+        }
+        .upload input {
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            left: 0%;
+            position: absolute;
+            opacity:0;    
+        }
+        .upload label {
+            z-index: 1;
+            left: 6%;
+            top: 25%;
+            position: absolute;
+            color: #a7b8c6; 
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            transition-duration: 0.5s;
+        }
+        /*upload file控件的上傳按鈕*/
+        #upload-btn {
+            height: 100%;
+            right: 0;
+            width: 3.5vw;
+            position: absolute;
+            border: none;
+            border-radius: 0.5em;
+            background-color: #7a99b2cc; 
+            transition-property: background-color;
+            transition-duration: 0.5s;
+        }
+        #upload-btn img{
+            height: auto;
+            width: auto;
+            max-width: 85%;
+            max-height: 85%;
+            top: 11%;
+            left: 25%;
+            position: absolute;
+        }
+        .upload:hover {
+            transform: scale(103%);
+            transition-duration: 0.5s;
+        }
+        .upload:hover #upload-btn {
+            background-color: #4b7190bc; 
+            transition-duration: 0.5s;
+        }
+        .upload:hover label {
+            color: #4b7190bc; 
+            transition-duration: 0.5s;
+        }
+        /*彈窗中上傳圖片的預覽框*/
+        .img-box {
+            z-index: 1;
+            position: absolute;
+            object-fit:cover;
+            cursor: grab;
+            background-color: rgba(255, 255, 255, 0.374);
+            overflow:hidden;
+        }
+        .img-box #preview {
+            width: auto;
+            height: auto;
+            min-width: 100%;
+            min-height: 100%;
+            max-width: 130%;
+            max-height: 130%;
+            position: absolute;
+        }
+        /*彈窗中確認發布帖子的按鈕*/
+        .release {
+            width: 12%;
+            height: 8%;
+            left: 45%;
+            bottom: 3%;
+            position: absolute; 
+            border: none;
+            border-radius: 0.5em;
+            background-color: #94badad2;
+            color: white;
+            font-size: 1vw;
+            font-family:'Old Standard TT', serif;
+            transition-duration: 0.5s;
+        }
+        .release:hover {
+            transform: scale(107%);
+            transition-duration: 0.5s;
+            cursor: pointer;
+        }
+        /*該帖子標題(利用javascript獲取相應甜點名稱作為帖子標題)*/
+        .post-title {
+            position: absolute; 
+            font-size: 1.3vw;
+            color: #a7b8c6; 
+            text-decoration: underline;
+            font-family:'Old Standard TT', serif;
+        }
+        /*文字簡介的段落格式*/
+        section {
+            position: absolute; 
+            width: 60%;
+            font-size: 1.15vw;
+            font-family:'Old Standard TT', serif;
+            color: #a1b0bcea;
+        }
+        /*物件小圖標(星形,地標)*/
+        .uncollect-icon {
+            width: auto;
+            height: auto;
+            position: absolute;
+            opacity: 2;
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+        }
+        .collect-icon {
+            width: auto;
+            height: auto;
+            position: absolute; 
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+            cursor: pointer;
+        }
+        #no {
+            opacity: 0.3;
+        }
+        #yes {
+            opacity: 1;
+        }
+        /*實現鼠標懸浮時小圖標的晃動動畫*/
+        .collect-icon:hover {
+            animation: shake 1s linear forwards;
+        }
+        @keyframes shake {
+            0% {transform: rotate(0deg);}
+            20% {transform: rotate(-20deg);}
+            40% {transform: rotate(20deg);}
+            60% {transform: rotate(-10deg);}
+            80% {transform: rotate(10deg);}
+            100% {transform: rotate(0deg);}
+        }
+        .share-icon {
+            width: auto;
+            height: auto;
+            position: absolute; 
+            opacity: 0.8;
+            max-width: 3.5vw; 
+            max-height: 3.5vh;
+        }
+        .share-icon:hover {
+            transform: scale(115%);
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <div class="menu_bar" style="background-color: #f6fcff;">
+            <ul>
+                <li><a id="bar-txt" style="left: 25%;" href="homepage.html">Home</a></li>
+                <li><a id="bar-txt" style="left: 38%;" href="collection.html">Collection</a></li>
+                <li><a id="bar-txt" style="left: 51%;" href="memories.html">Memories</a></li>
+                <li><a id="bar-txt" style="left: 64%;" href="community.html">Community</a></li>
+                <li><a id="bar-txt" style="left: 77%;" href="account.html">Account</a></li>
+            </ul>
+            <div class="logo" id="logo" onmouseenter="shift()" onmouseleave="shift_back()">
+                <img src="image/list.png" style="width: auto; height: auto; max-width: 35%; max-height: 35%; left: 0; top: 26%; position:absolute;">
+                <span>D</span>
+                <span>é</span>
+                <span>g</span>
+                <span>u</span>
+                <span>s</span>
+                <span>t</span>
+                <span>e</span>
+                <span>r</span>
+            </div>
+        </div>
+        <div class="pop-menu-field" style="background-color: #f6fcff;">
+            <div class="pop-menu" id="pop-menu">
+                <ul style="top: 5%; left:10%; position:absolute;">
+                    <li><a id="menu-txt" href="main.html">Classic Chinese Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic French Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Italian Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Malaysian Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Japanese Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Greek Desserts</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Turkish Dessert</a></li>
+                    <li><a id="menu-txt" href="main.html">Classic Spanish Desserts</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="background-color: #f6fcff;" id="main">
+            <h3 id="progress" style="top: 10.5%; right: 10%;">0%</h3>
+            <img class="icon" src="image/pinching.png" style="top: 6%; right: 5%; max-width: 7%; max-height: 7%;" id="hand">
+            <img class="icon-drop" src="image/like.png" style="top: 12%; right: 7%; max-width: 4%; max-height: 4%; transform:rotate(-20deg)" id="heart">
+            <img class="icon" src="image/heartcake.png" style="bottom: 2%; right: 5.5%; max-width: 9%; max-height: 9%;" id="cake">
+            <div class="item_wrap" id="item_wrap">
+                <div class="item" style="top: 4vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Lotus crisp</p>
+                        <p class="item-title" style="bottom: 8%;">荷花酥</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;" id="3">Lotus Cake is a famous traditional snack in Hangzhou, Zhejiang.
+                                                          It is shaped like a lotus flower, with a clear crisp layer, 
+                                                          beautiful and moving in appearance, and crispy and sweet when eaten.
+                    </section>
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="no">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="yes" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 23vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Put Chai Ko</p>
+                        <p class="item-title" style="bottom: 8%;">缽仔糕</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">The pastry chef puts the ingredients into a bowl or a bowl of similar shape to make it. 
+                                                          When eating, the pudding is poured out of the pudding and eaten with a bamboo stick, so it is called "bozai cake.
+                    </section>
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 42vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Lotus Starch Balls</p>
+                        <p class="item-title" style="bottom: 8%;">藕粉圓子</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">The round and transparent lotus root starch balls are soaked in thick soup, 
+                                                          and they are flexible and elastic when clamped on chopsticks. 
+                                                          They are chewy in the mouth and have a lingering fragrance.
+                    </section>
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 61vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Osmanthus Cake</p>
+                        <p class="item-title" style="bottom: 8%;">藕粉桂花糖糕</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Lotus root starch and sweet-scented osmanthus are both famous traditional snacks in Hangzhou, 
+                                                          Zhejiang. This is an exquisite pastry with Jiangnan flavor.
+                    </section>  
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="no">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="yes" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 80vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Rose Petals Pastry</p>
+                        <p class="item-title" style="bottom: 8%;">鮮花玫瑰餅</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Flower Cake is a kind of shortbread made with Yunnan's unique edible roses. 
+                                                          Anyone who has eaten Flower Cake will be captivated by its crispy taste and rich aroma.
+                    </section>  
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 99vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Apricot kernel Tofu</p>
+                        <p class="item-title" style="bottom: 8%;">杏仁豆腐</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Ice-cold, sweet and refreshing almond tofu is made by boiling sweet almond pulp, 
+                                                          freezing and congealing, and cutting into pieces. It is named for its shape like tofu.
+                    </section>  
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 118vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Tanghulu</p>
+                        <p class="item-title" style="bottom: 8%;">糖葫蘆</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Red hawthorn fruit or fruit fillings such as strawberries and oranges are wrapped 
+                                                          in crystal clear syrup and strung on bamboo sticks. The sweet and sour taste is suitable for all ages.
+                    </section>  
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 137vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Yolk pastry</p>
+                        <p class="item-title" style="bottom: 8%;">蛋黃酥</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Egg yolk cakes are made of bean paste and plump salted egg yolk wrapped in 
+                                                          layers of puff pastry. It looks like a full moon and is most suitable for enjoying the moon
+                    </section>  
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 156vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Beh Teung Guai</p>
+                        <p class="item-title" style="bottom: 8%;">白糖粿</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Beh Teung Guai is the iconic street food in Taiwan. It's taste like Deep-fried Mochi.
+                                                          The texture is crispy on the outside, chewy on the inside.
+                    </section> 
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="no">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="yes" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 175vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Ginger Milk Curd</p>
+                        <p class="item-title" style="bottom: 8%;">薑撞奶</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Ginger milk belongs to Cantonese cuisine. It is made from milk coagulated with 
+                                                          ginger juice and sweetened. It tastes mellow, sweet and slightly spicy.
+                    </section>
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+                <div class="item" style="top: 194vh">
+                    <a href="article.html" style="width:92%; height:100%; position:absolute;"></a>
+                    <div class="title-wrap">
+                        <p class="item-title">Sachima</p>
+                        <p class="item-title" style="bottom: 8%;">沙琪瑪</p>
+                    </div>
+                    <section style="top: 23%; left: 27%;">Shaqima is a square sweet pastry of the Manchurians in the Qing Dynasty. 
+                                                          It is golden in color, soft and sweet in taste, and has a strong taste.
+                    </section>
+                    <img class="uncollect-icon" src="image/star-border.png" style="bottom: 60%; right: 4%;" id="yes">
+                    <img class="collect-icon" src="image/star.png" style="bottom: 60%; right: 4%;" id="no" onclick="change(this)">
+                    <img class="share-icon" src="image/placeholder.png" style="bottom: 20%; right: 4%;" onclick="show(this)">
+                </div>
+            </div>
+        </div>
+        <div class="dialog" id="dialog">
+            <button class="close-button" onclick="close_dialog()">X</button>
+            <p class="item-title" style="top: 0%; left: 28%;">Record New Memories</p>
+            <p class="post-title" style="top: 8%;" id="post-title"></p>
+            <div class="selector">
+                <div id="selectField" onmouseover="open_tag_list()" style="width: 100%; height: 100%; position: absolute;">
+                    <p id="selectText">#HashTag</p>
+                </div>
+                <ul id="tag-list" class="hide">
+                  <li class="tag-opt"><p>#HomeMade</p></li>
+                  <li class="tag-opt"><p>#Experience</p></li>
+                  <li class="tag-opt"><p>#Travel</p></li>
+                  <li class="tag-opt"><p>#Life</p></li>
+                </ul>
+            </div>
+            <div class="upload">
+                <input id="upload-file" type="file" accept="image/jpeg,image/jpg,image/png" onchange="upload_change()" readonly>
+                <label id="upload-text">Pick Image</label>
+                <button id="upload-btn">
+                    <img src="image/gallery.png">
+                </button>
+            </div>
+            <div class="img-box" id="img-box" style="width: 70%; height: 58%; left: 15%; top: 28.5%;">
+                <img id="preview" draggable="False" onmousedown="drag_start(this)">
+            </div> 
+            <button class="release" onclick="release_post()">Release</button>
+        </div>
+        <script>
+            document.querySelectorAll("span").forEach((span, index) => {
+              span.style.setProperty("--delay", `${index * 100}ms`);
+            });
+        </script>
+        <script>
+            var t = null;
+            function shift() {
+                icon_visible(0);
+                move_div(0, 0, 'out');
+            }
+            function shift_back() {
+                document.getElementById("pop-menu").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+                document.getElementById("logo").addEventListener('mouseenter', function(){
+                    document.getElementById("main").addEventListener('mouseenter', function() {
+                        move_div(0, 0, 'in');
+                    }); 
+                });
+            }
+            function move_div(x, y, z) {
+                clearInterval(t);
+                t = setInterval(m, 10);
+                function m(){
+                    if(x == 25){
+                        clearInterval(t);
+                        if(z == 'in'){
+                            icon_visible(1); 
+                        }
+                    }
+                    else{
+                        x += 1;
+                        y += 0.56;
+                        if(z == 'in'){
+                            document.getElementById("main").style.width = (75+x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (y) + 'vw';
+                        }
+                        else{
+                            document.getElementById("main").style.width = (100-x) + 'vw';
+                            document.getElementById("item_wrap").style.left = (14-y) + 'vw';
+                        }
+                    }
+                }
+            }
+            function icon_visible(v) {
+                document.getElementById("hand").style.opacity = v;
+                document.getElementById("heart").style.opacity = v;
+                document.getElementById("cake").style.opacity = v;
+                document.getElementById("progress").style.opacity = v;
+            }
+        </script>
+        <script>
+            const container = document.getElementById('main');
+            const scrollHeight = container.scrollHeight - container.clientHeight;
+            //監聽scroll事件
+            container.addEventListener('scroll', () => {
+                const scrollTop = container.scrollTop;
+                //進度 = (當前滾動條位置/滾動條高度)*100 -> 取整數再加上'%'
+                var progress = `${((scrollTop / scrollHeight) * 100).toFixed(0)}%`;
+                //更新 id='progress' 標籤顯示的進度值
+                document.getElementById("progress").textContent = progress;
+            });
+        </script>
+        <script>
+            function show(obj){
+				document.getElementById("dialog").style.display = "block";
+                node = obj.parentNode.children[1].children[0];
+                //該物件名稱的字數
+                len = node.textContent.length 
+                //物件標題的起始位置 = [(字數上限65 - len) / 2] / 字數上限60 = 0.5 - len/120
+                start = 0.5 - len/120
+                document.getElementById("post-title").style.left = start*100 + '%';
+                document.getElementById("post-title").innerHTML = node.textContent;
+			}
+            function close_dialog(){
+                document.getElementById("dialog").style.display = "none";
+                document.getElementById('selectText').innerHTML = "Select HashTag";
+                document.getElementById('preview').src = "none";
+                document.getElementById('upload-text').innerHTML = "";
+			}
+        </script>
+        <script>
+            var list = document.getElementById('tag-list');
+            var opt = document.getElementsByClassName('tag-opt');
+            function open_tag_list(){
+                list.style.visibility = 'visible';
+                document.getElementById('selectText').style.color = '#4b7190bc'; 
+                list.addEventListener('mouseleave', function() {
+                    list.style.visibility = 'hidden';
+                    document.getElementById('selectText').style.color = '#a7b8c6'; 
+                }); 
+            }
+            for (o of opt) {
+                o.onclick = function () {
+                document.getElementById('selectText').innerHTML = this.textContent;
+                list.style.visibility = 'hidden';
+                document.getElementById('selectText').style.color = '#a7b8c6'; 
+                };
+            }
+        </script>
+        <script>
+            var disX, disY; //鼠標相對於img的位置
+            var x = document.getElementById('upload-file')
+            const reader = new FileReader();
+            function upload_change() {
+                if(x.files.length != 0){
+                    var y = document.getElementById('upload-text');
+                    y.innerHTML = x.files[0].name;
+                    y.style.top = 20 +'%';
+                    reader.readAsDataURL(x.files[0]);
+                    Preview()
+                }
+            }   
+            function Preview() {
+                const p = document.getElementById('preview');
+                reader.addEventListener("load", function () {
+                    // convert image file to base64 string
+                    p.src = reader.result;
+                }, false);
+            }
+            //拖動圖片調整位置
+            function drag_start(obj) {
+                obj.draggable = 'True';
+                disX = event.clientX - obj.offsetLeft;
+                disY = event.clientY - obj.offsetTop;
+                document.getElementById("img-box").addEventListener('drag', function(){
+                    var x = event.clientX;
+                    var y = event.clientY;
+                    var area = document.getElementById("img-box");
+                    var left = (parseInt(area.style.left)/100)*(0.35*window.innerWidth)+(0.32*window.innerWidth);
+                    var w = (parseInt(area.style.width)/100)*(0.35*window.innerWidth);
+                    var top = (parseInt(area.style.top)/100)*(0.5*window.innerHeight)+(0.27*window.innerHeight);
+                    var h = (parseInt(area.style.height)/100)*(0.5*window.innerHeight);
+                    if((x>left) && (x<(left+w)) && (y>top) && (y<(top+h))){
+                        obj.style.left = x - disX + 'px';
+                        obj.style.top = y - disY + 'px';
+                    }
+                    else{
+                        obj.draggable = 'False';
+                    }
+                });
+                document.getElementById("img-box").addEventListener('mouseup', function(){
+                    obj.draggable = 'False';
+                });
+            }
+        </script>
+        <script>
+            function release_post() {
+                close_dialog();
+                window.alert('Successful Posting!');
+            }
+        </script>
+        <script>
+            function change(obj) {
+                if(obj.id == 'yes'){
+                    obj.id = 'no';
+                    obj.previousElementSibling.id = 'yes';
+                }
+                else{
+                    obj.id = 'yes';
+                    obj.previousElementSibling.id = 'no';
+                }
+            }
+        </script>
+    </body>
+</html>
