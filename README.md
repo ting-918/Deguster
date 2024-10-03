@@ -8,8 +8,8 @@
 &emsp;of 10vh. Namely, it will always occupy 100% of the screen's visible width and 10% of its height, being responsive <br> 
 &emsp;to window size. <br>
 &emsp;This component includes:<br>
-- An unordered list (\<ul\>) with several embedded anchor links (\<a\>), which facilitate navigation between different modules of the website.<br>
-- The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the website's name and serve as a trigger for the left-side submenu. Additionally, the logo uses several \<span\> to create an effect where each letter animates individually with a bounce when the mouse hovers over it. <br>
+- An unordered list (\<ul\>) with several embedded anchor links (\<a\>), which facilitate navigation between different modules of the website.
+- The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the website's name and serve as a trigger for the left-side submenu. Additionally, the logo uses several \<span\> to create an effect where each letter animates individually with a bounce when the mouse hovers over it. 
 
 **2. Left-side Submenu Design** <br>
 &emsp;We designed a hidden submenu that appears from the left side when the user hovers over the logo. <br>
@@ -18,19 +18,15 @@
 
 **3. Main Content Area Design** <br>
 &emsp;The main content area has a height set to 90vh and its width adjusts as follows:<br>
-&emsp;&emsp; • When the left-side submenu is collapsed, the width is set to 100vw. <br>
-&emsp;&emsp; • When the submenu is expanded, the width shrinks to 75vw, with 25vw allocated to the submenu. <br>
-&emsp;&emsp;&emsp;This animation is implemented using a custom JavaScript function move_div() with the setInterval() method <br>
-&emsp;&emsp;&emsp;to create a smooth transition. <br>
+- When the left-side submenu is collapsed, the width is set to 100vw. 
+- When the submenu is expanded, the width shrinks to 75vw, with 25vw allocated to the submenu.This animation is implemented using a custom JavaScript function move_div() with the setInterval() method to create a smooth transition.
 
 **4. Right-side Progress Bar Design** <br>
 &emsp;When the main content exceeds the browser height, a progress bar appears on the right side, animating in  <br>
 &emsp;real-time with scroll. <br>
 &emsp;This conpenent is implemented using CSS Animation and JavaScript, as follows: <br>
-&emsp;• **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; animation to progress based on the scroll bar's position. <br>
-&emsp;• **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; progress percentage in real time as the user scrolls. <br>
+- **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the animation to progress based on the scroll bar's position.
+- **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading progress percentage in real time as the user scrolls. 
 <div align="center"><img src="assets(md)/right-side%20progress%20bar.png" width="50%"></div>
 
 # Function Description
@@ -45,10 +41,10 @@ When users hover over a specific continent, the icon of classic desserts in this
 
 **3. Browsing and Favorites List** <br>
 After selecting a dessert from the map or side menu, users are taken to a list-style page showcasing each dessert with its title, introduction, favorite button (star icon), and post button (red landmark icon). <br><br>
-• Functionality of the Favorite Button <br>
+- Functionality of the Favorite Button <br>
 &emsp;The button allows toggling between two states—not favorited and favorited—while performing corresponding<br>
 &emsp;actions (adding/removing the item from the personal favorites library) <br> 
-• Dynamic Effect of the Favorite Button <br>
+- Dynamic Effect of the Favorite Button <br>
 &emsp;When the mouse hovers over the star icon, it exhibits a side-to-side shaking effect, which is implemented <br>
 &emsp;using CSS Animation and @keyframes.<br>
 <div align="center"><img src="assets(md)/List.png" width="50%"></div><br>
@@ -56,13 +52,13 @@ After selecting a dessert from the map or side menu, users are taken to a list-s
 **4. Post Creation** <br>
 Users can create posts related to specific desserts by clicking on the post button in the list. The popup window allows users to edit the post content, select tags, and upload images, providing a user-friendly interface for content creation. <br>
 To implement **Image Upload and Preview**, we designed a component that includes the following two parts:<br>
-• Image Upload Control (.upload) <br>
+- Image Upload Control (.upload) <br>
 &emsp;(1) <input type="file"> for selecting and uploading local image files. <br>
 &emsp;(2) <label> used to display status text, showing the current state of the uploaded image. <br>
 &emsp;(3) <button> for triggering the image upload function. <br>
 &emsp;When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which updates<br>
 &emsp;the <label> to show the name of the selected image. <br>
-• Image Preview Control (#preview) <br>
+- Image Preview Control (#preview) <br>
 &emsp;This control works with JavaScript’s FileReader to implement the image preview feature. When the FileReader<br>
 &emsp;detects a load event, it converts the image to Base64 encoding and assigns the result to the src attribute <br>
 &emsp;of #preview, displaying the locally selected image.<br>
