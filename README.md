@@ -13,9 +13,10 @@
 &emsp;&emsp;&emsp; different modules of the website.<br>
 &emsp;&emsp; • The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the <br>
 &emsp;&emsp;&emsp; website's name and serve as a trigger for the left-side submenu.<br>
+&emsp;&emsp;&emsp; Additionally, the logo uses several <span> elements to create an effect where each letter animates individually with a bounce when the mouse hovers over it.
 
 **2. Left-side Submenu Design** <br>
-&emsp;We designed a hidden submenu that appears from the left side when the user hovers over the website name. <br>
+&emsp;We designed a hidden submenu that appears from the left side when the user hovers over the logo. <br>
 &emsp;The submenu layout is constructed using an unordered list (\<ul\>) with several embedded anchor links (\<a\>), <br>
 &emsp;categorized by region to facilitate navigation to the desired dessert pages.<br>
 
@@ -31,6 +32,7 @@
 &emsp;real-time with scroll. <br>
 &emsp;This conpenent is implemented using CSS Animation and JavaScript, as follows: <br>
 &emsp;• **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the <br>
-&emsp;&emsp;&emsp; animation to progress based on the scroll bar's position. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp; animation to progress based on the scroll bar's position. <br>
 &emsp;• **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading <br>
-&emsp;&emsp;&emsp; progress percentage in real time as the user scrolls. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp; progress percentage in real time as the user scrolls. <br>
+![Progress Bar](https://github.com/ting-918/Deguster/blob/03ac001679260ccc1112c19cadb72a1620eae8ad/assets(md)/right-side%20progress%20bar.png "Progress Bar")
