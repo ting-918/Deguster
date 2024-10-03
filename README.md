@@ -13,7 +13,7 @@
 &emsp;&emsp;&emsp; different modules of the website.<br>
 &emsp;&emsp; • The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the <br>
 &emsp;&emsp;&emsp; website's name and serve as a trigger for the left-side submenu.<br>
-&emsp;&emsp;&emsp; Additionally, the logo uses several /<span/> to create an effect where each letter animates individually with<br> 
+&emsp;&emsp;&emsp; Additionally, the logo uses several \<span\> to create an effect where each letter animates individually with<br> 
 &emsp;&emsp;&emsp; a bounce when the mouse hovers over it. <br>
 
 **2. Left-side Submenu Design** <br>
@@ -33,7 +33,7 @@
 &emsp;real-time with scroll. <br>
 &emsp;This conpenent is implemented using CSS Animation and JavaScript, as follows: <br>
 &emsp;• **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; animation to progress based on the scroll bar's position. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;animation to progress based on the scroll bar's position. <br>
 &emsp;• **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading <br>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; progress percentage in real time as the user scrolls. <br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; progress percentage in real time as the user scrolls. <br>
 &emsp; <img src="assets(md)/right-side%20progress%20bar.png" width="50%">
