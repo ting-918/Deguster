@@ -1,7 +1,6 @@
 # Déguster (Desserts Map)
-• Déguster is an original idea for a website revolving around **desserts**, designed for knowledge propagation, <br>
-&ensp; &nbsp;interaction, and social sharing among dessert lovers worldwide. <br>
-• Here, we emphasize how to creatively use HTML, CSS, and JavaScript for the UI design of Déguster.<br>
+- Déguster is an original idea for a website revolving around **desserts**, designed for knowledge propagation, interaction, and social sharing among dessert lovers worldwide. 
+- Here, we emphasize how to creatively use HTML, CSS, and JavaScript for the UI design of Déguster.<br>
 
 # Website Layout Design
 **1. Top Navigation Bar Design** <br>
