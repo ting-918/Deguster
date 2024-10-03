@@ -49,10 +49,10 @@ When users hover over a specific continent, the icon of classic desserts in this
 <div align="center"><img src="assets(md)/hover%20over%20desserts%20map.png" width="50%"></div><br>
 
 **3. Browsing and Favorites List** <br>
-After selecting a dessert from the map or side menu, users are taken to a list-style page showcasing each dessert with its title, introduction, favorite button (star icon), and post button (red landmark icon). <br>
+After selecting a dessert from the map or side menu, users are taken to a list-style page showcasing each dessert with its title, introduction, favorite button (star icon), and post button (red landmark icon). <br><br>
 • Functionality of the Favorite Button <br>
-&emsp;The button allows toggling between two states—not favorited and favorited—while performing corresponding actions (adding or <br>
-&emsp;removing the item from the personal favorites library) <br> 
+&emsp;The button allows toggling between two states—not favorited and favorited—while performing corresponding<br>
+&emsp;actions (adding/removing the item from the personal favorites library) <br> 
 • Dynamic Effect of the Favorite Button <br>
 &emsp;When the mouse hovers over the star icon button, it exhibits a side-to-side shaking effect. <br>
 &emsp;This animation is implemented using CSS Animation and @keyframes.<br>
@@ -62,13 +62,18 @@ After selecting a dessert from the map or side menu, users are taken to a list-s
 Users can create posts related to specific desserts by clicking on the post button in the list. The popup window allows users to edit the post content, select tags, and upload images, providing a user-friendly interface for content creation. <br>
 To implement **Image Upload and Preview**, we designed a component that includes the following two parts:<br>
 • Image Upload Control (.upload) <br>
-&emsp;① <input type="file"> for selecting and uploading local image files. <br>
-&emsp;② <label> used to display status text, showing the current state of the uploaded image. <br>
-&emsp;③ <button> for triggering the image upload function. <br>
-When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which updates the <label> to show the name of the selected image. <br>
+&emsp;(1) <input type="file"> for selecting and uploading local image files. <br>
+&emsp;(2) <label> used to display status text, showing the current state of the uploaded image. <br>
+&emsp;(3) <button> for triggering the image upload function. <br>
+&emsp;When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which <br>
+&emsp;updates the <label> to show the name of the selected image. <br>
 • Image Preview Control (#preview) <br>
-This control works with JavaScript’s FileReader to implement the image preview feature. When the FileReader detects a load event, it converts the image to Base64 encoding and assigns the result to the src attribute of #preview, displaying the locally selected image.<br>
-Additionally, a custom JavaScript function drag_start(this) is designed to allow dragging and adjusting the displayed area of the image. This function calculates the "mouse position relative to the image" during the drag event to achieve the functionality.
+&emsp;This control works with JavaScript’s FileReader to implement the image preview feature. When the FileReader<br>
+&emsp;detects a load event, it converts the image to Base64 encoding and assigns the result to the src attribute <br>
+&emsp;of #preview, displaying the locally selected image.<br>
+&emsp;Additionally, a custom JavaScript function drag_start(this) is designed to allow dragging and adjusting the <br>
+&emsp;displayed area of the image. This function calculates the "mouse position relative to the image" during the <br>
+&emsp;drag event to achieve the functionality.<br>
 <div align="center"><img src="assets(md)/Post%20Creation.png" width="50%"></div><br>
 
 **5. Post Management**  <br>
