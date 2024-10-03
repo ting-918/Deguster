@@ -59,9 +59,9 @@ To implement **Image Upload and Preview**, we designed a component that includes
 &emsp;When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which updates<br>
 &emsp;the <label> to show the name of the selected image. <br>
 - Image Preview Control (#preview) <br>
-&emsp;This control works with JavaScript’s FileReader to implement the image preview feature. When the FileReader<br>
-&emsp;detects a load event, it converts the image to Base64 encoding and assigns the result to the src attribute <br>
-&emsp;of #preview, displaying the locally selected image.<br>
+&emsp;This control works with JavaScript’s FileReader to implement the image preview feature. When the <br>
+&emsp;FileReader detects a load event, it converts the image to Base64 encoding and assigns the result to the src <br>
+&emsp;attribute of #preview, displaying the locally selected image.<br>
 &emsp;Additionally, a custom JavaScript function drag_start(this) is designed to allow dragging and adjusting the <br>
 &emsp;displayed area of the image. This function calculates the "mouse position relative to the image" during the <br>
 &emsp;drag event to achieve the functionality.<br>
