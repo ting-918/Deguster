@@ -8,8 +8,8 @@
 &emsp;of 10vh. Namely, it will always occupy 100% of the screen's visible width and 10% of its height, being responsive <br> 
 &emsp;to window size. <br>
 &emsp;This component includes:<br>
-&emsp;- An unordered list (\<ul\>) with several embedded anchor links (\<a\>), which facilitate navigation between different modules of the website.<br>
-&emsp;- The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the website's name and serve as a trigger for the left-side submenu. Additionally, the logo uses several \<span\> to create an effect where each letter animates individually with a bounce when the mouse hovers over it. <br>
+- An unordered list (\<ul\>) with several embedded anchor links (\<a\>), which facilitate navigation between different modules of the website.<br>
+- The logo formed by an image (\<img\>) and several spans (\<span\>), positioned on the left to display the website's name and serve as a trigger for the left-side submenu. Additionally, the logo uses several \<span\> to create an effect where each letter animates individually with a bounce when the mouse hovers over it. <br>
 
 **2. Left-side Submenu Design** <br>
 &emsp;We designed a hidden submenu that appears from the left side when the user hovers over the logo. <br>
