@@ -15,7 +15,7 @@
 &emsp;&emsp;&emsp; website's name and serve as a trigger for the left-side submenu.<br>
 
 **2. Left-side Submenu Design** <br>
-&emsp;A hidden submenu appears when the user hovers over the website name. <br>
+&emsp;We designed a hidden submenu that appears from the left side when the user hovers over the website name. <br>
 &emsp;The submenu layout is constructed using an unordered list (\<ul\>) with several embedded anchor links (\<a\>), <br>
 &emsp;categorized by region to facilitate navigation to the desired dessert pages.<br>
 
@@ -27,7 +27,10 @@
 &emsp;&emsp;&emsp;to create a smooth transition. <br>
 
 **4. Right-side Progress Bar Design** <br>
-&emsp;When the main content exceeds the browser height, a progress bar appears on the right side, animating in real-time with scroll. <br>
+&emsp;When the main content exceeds the browser height, a progress bar appears on the right side, animating in  <br>
+&emsp;real-time with scroll. <br>
 &emsp;This conpenent is implemented using CSS Animation and JavaScript, as follows: <br>
-&emsp;&emsp; • **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the animation to progress based on the scroll bar's position. <br>
-&emsp;&emsp; • **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading progress percentage in real time as the user scrolls. <br>
+&emsp;• **CSS Animation** : We use the experimental scroll-time value for the animation-timeline property, allowing the <br>
+&emsp;&emsp;&emsp; animation to progress based on the scroll bar's position. <br>
+&emsp;• **JavaScript** : We listens to the scrolling event within the content area, calculating and updating the reading <br>
+&emsp;&emsp;&emsp; progress percentage in real time as the user scrolls. <br>
