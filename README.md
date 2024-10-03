@@ -54,8 +54,8 @@ After selecting a dessert from the map or side menu, users are taken to a list-s
 &emsp;The button allows toggling between two states—not favorited and favorited—while performing corresponding<br>
 &emsp;actions (adding/removing the item from the personal favorites library) <br> 
 • Dynamic Effect of the Favorite Button <br>
-&emsp;When the mouse hovers over the star icon button, it exhibits a side-to-side shaking effect. <br>
-&emsp;This animation is implemented using CSS Animation and @keyframes.<br>
+&emsp;When the mouse hovers over the star icon, it exhibits a side-to-side shaking effect, which is implemented <br>
+&emsp;using CSS Animation and @keyframes.<br>
 <div align="center"><img src="assets(md)/List.png" width="50%"></div><br>
 
 **4. Post Creation** <br>
@@ -65,8 +65,8 @@ To implement **Image Upload and Preview**, we designed a component that includes
 &emsp;(1) <input type="file"> for selecting and uploading local image files. <br>
 &emsp;(2) <label> used to display status text, showing the current state of the uploaded image. <br>
 &emsp;(3) <button> for triggering the image upload function. <br>
-&emsp;When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which <br>
-&emsp;updates the <label> to show the name of the selected image. <br>
+&emsp;When the value of the <input> changes, it triggers a custom JavaScript function upload_change(), which updates<br>
+&emsp;the <label> to show the name of the selected image. <br>
 • Image Preview Control (#preview) <br>
 &emsp;This control works with JavaScript’s FileReader to implement the image preview feature. When the FileReader<br>
 &emsp;detects a load event, it converts the image to Base64 encoding and assigns the result to the src attribute <br>
